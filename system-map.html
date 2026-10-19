@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agent Studio — System Map v1.0</title>
+<meta name="description" content="Sanitized architecture system map: one orchestrator, named subagent crews, two lanes, ten laws. Companion visual to ARCHITECTURE.md.">
+<style>
+  :root{
+    --paper:#F6F4EE; --panel:#FCFBF7; --panel2:#EDEAE2; --field:#F3F1E9;
+    --ink:#26262B; --ink2:#4D4F55; --ink3:#6A6C71;
+    --hair:#D9D5CA; --grid-minor:#ECE9E0; --grid-major:#E0DCD1;
+    --blue:#33567D; --oxide:#A2401F;
+    --mono: ui-monospace, monospace;
+    --sans: system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
+  body{font-family:var(--mono)}
+  .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap}
+  .stage{padding:14px;display:flex;justify-content:center}
+  #sheet{width:100%;max-width:1840px;height:auto;display:block;touch-action:none;cursor:grab;border:1px solid var(--hair);
+    -webkit-user-select:none;user-select:none}
+  #sheet.dragging{cursor:grabbing}
+  #sheet:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .controls{position:fixed;left:16px;bottom:16px;display:flex;gap:6px;z-index:5}
+  .stage{padding-bottom:70px}
+  .controls button{font-family:var(--mono);font-size:12px;padding:7px 11px;background:var(--panel);
+    border:1px solid var(--ink);color:var(--ink);cursor:pointer}
+  .controls button:hover{background:var(--ink);color:var(--paper)}
+  .controls button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .outline{max-width:1840px;margin:6px auto 28px;padding:0 14px;font-size:12.5px;color:var(--ink2)}
+  .outline summary{cursor:pointer;font-weight:600;color:var(--ink);padding:6px 0}
+  .outline pre{white-space:pre-wrap;line-height:1.5;background:var(--panel);border:1px solid var(--hair);padding:14px 18px}
+  /* sheet text */
+  text{font-family:var(--mono);fill:var(--ink)}
+  .t-ink{fill:var(--ink)} .t-ink2{fill:var(--ink2)} .t-ink3{fill:var(--ink3)}
+  .t-blue{fill:var(--blue)} .t-oxide{fill:var(--oxide)} .t-paper{fill:var(--paper)} .t-paper2{fill:var(--paper);opacity:.82} .t-paper3{fill:var(--paper);opacity:.72}
+  .w4{font-weight:400}.w5{font-weight:500}.w6{font-weight:600}.w7{font-weight:700}
+  .s85{font-size:8.5px}.s9{font-size:9px}.s95{font-size:9.5px}.s10{font-size:10px}.s105{font-size:10.5px}.s11{font-size:11px}.s12{font-size:12px}.s125{font-size:12.5px}.s13{font-size:13px}.s15{font-size:15px}.s16{font-size:16px}.s26{font-size:26px}
+  .track{letter-spacing:.14em}.track2{letter-spacing:.08em}
+  .node{fill:var(--panel);stroke:var(--ink);stroke-width:1}
+  .node-mgr{stroke-width:1.75}
+  .node-spec{stroke-width:2.5}
+  .node-adv{stroke-width:1.25;stroke-dasharray:5 4}
+  .node-orch{fill:var(--ink);stroke:var(--ink)}
+  .container{fill:var(--field);stroke:var(--ink);stroke-width:1.75}
+  .container-rail{fill:var(--field);stroke:var(--ink);stroke-width:1.25}
+  .hdr{fill:var(--panel2)}
+  .hairline{stroke:var(--hair);stroke-width:1}
+  .rule{stroke:var(--ink);stroke-width:1}
+  .c-bus{stroke:var(--ink);stroke-width:1.75;fill:none}
+  .c-main{stroke:var(--ink);stroke-width:1.5;fill:none}
+  .c-med{stroke:var(--ink);stroke-width:1.25;fill:none}
+  .c-thin{stroke:var(--ink);stroke-width:1;fill:none}
+  .c-adv{stroke:var(--ink2);stroke-width:1.25;fill:none;stroke-dasharray:5 4}
+  .c-ret{stroke:var(--ink2);stroke-width:1.25;fill:none;stroke-dasharray:2 3}
+  .leader{stroke:var(--ink3);stroke-width:1;fill:none}
+  .zone-sep{stroke:var(--hair);stroke-width:1;stroke-dasharray:2 6}
+  .chip{fill:var(--panel2);stroke:var(--hair);stroke-width:1}
+  .chip-ink{fill:var(--ink);stroke:var(--ink)}
+  .chip-oxide{fill:var(--oxide);stroke:var(--oxide)}
+  .gate-bar{fill:var(--oxide)}
+  .layer{transition:stroke-width .12s ease}
+  @media (prefers-reduced-motion: reduce){ .layer{transition:none} }
+  @media print{
+    .controls,.outline{display:none!important}
+    .stage{padding:0}
+    #sheet{width:1840px;height:1120px;max-width:none;border:none}
+    #view{transform:none !important}
+    @page{size:1840px 1120px;margin:0}
+  }
+</style>
+</head>
+<body>
+<h1 class="sr-only">The Agent Studio — system map, v1.0. Sanitized architecture package; companion visual to ARCHITECTURE.md.</h1>
+
+<main class="stage">
+<svg id="sheet" viewBox="0 0 1840 1120" role="img" aria-labelledby="mapTitle mapDesc" tabindex="0">
+  <title id="mapTitle">The Agent Studio — system map (v1.0, sanitized architecture package)</title>
+  <desc id="mapDesc">Blueprint-style system drawing in three zones. Zone A ownership: an Orchestrator at the top routes work to the Studio department (Strategist advisory seat above a Technical Director and an Art Director, each with a fixed worker roster), a Commercial Ops department (Director and Bookkeeper), and three side rails — Workshop Lane (Planner), Revision Lane (Reviser), and a Support crew (Utility Agent, Version-Control Agent, Adversarial Reviewer). Zone B: the eight-step request lifecycle from intake to loop closure, the five-app design-tool toolchain with three driver surfaces and verification gates, and three parallel asset lanes. Zone C margin: the model-cost tier legend (workhorse, specialist, frontier, advisory seat) and the ten laws.</desc>
+
+  <defs>
+    <pattern id="gridMinor" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="var(--grid-minor)" stroke-width="1"/>
+    </pattern>
+    <pattern id="gridMajor" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M100 0H0V100" fill="none" stroke="var(--grid-major)" stroke-width="1"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="var(--ink)"/>
+    </marker>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="var(--ink2)"/>
+    </marker>
+    <g id="mk-w"><circle r="3.2" fill="var(--ink)"/></g>
+    <g id="mk-s"><circle r="2.5" fill="var(--ink)"/><circle r="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/></g>
+    <g id="mk-f"><rect x="-4.4" y="-4.4" width="8.8" height="8.8" transform="rotate(45)" fill="var(--ink)"/></g>
+  </defs>
+
+  <g id="view">
+  <!-- ============ SHEET FURNITURE ============ -->
+  <rect x="0" y="0" width="1840" height="1120" fill="var(--paper)"/>
+  <rect x="28" y="28" width="1784" height="1064" fill="url(#gridMinor)"/>
+  <rect x="28" y="28" width="1784" height="1064" fill="url(#gridMajor)"/>
+  <rect x="16" y="16" width="1808" height="1088" fill="none" stroke="var(--ink)" stroke-width="2"/>
+  <rect x="28" y="28" width="1784" height="1064" fill="none" stroke="var(--ink)" stroke-width="0.75"/>
+  <!-- corner registration marks -->
+  <g stroke="var(--ink)" stroke-width="1">
+    <path d="M28 20V36M20 28H36"/><path d="M1812 20V36M1804 28H1820"/>
+    <path d="M28 1084V1100M20 1092H36"/><path d="M1812 1084V1100M1804 1092H1820"/>
+  </g>
+  <!-- zone separators -->
+  <line x1="1164" y1="120" x2="1164" y2="1080" class="zone-sep"/>
+  <line x1="1572" y1="120" x2="1572" y2="1080" class="zone-sep"/>
+
+  <!-- ============ MASTHEAD ============ -->
+  <text x="56" y="54" class="s10 w6 track t-blue">SANITIZED ARCHITECTURE PACKAGE · SYSTEM MAP</text>
+  <text x="56" y="84" class="s26 w7" style="font-family:var(--sans);letter-spacing:-.01em">THE AGENT STUDIO</text>
+  <text x="56" y="102" class="s12 t-ink2">How a working production system is organized — one orchestrator, named subagent crews, two lanes, ten laws.</text>
+  <text x="1784" y="54" text-anchor="end" class="s10 w5 t-ink2 track2">v1.0 · OCTOBER 2026 · SHEET 1 OF 1</text>
+  <text x="1784" y="74" text-anchor="end" class="s10 w6 t-ink track2">SAFE FOR AGENT HANDOFF — PATTERNS, NOT PARTICULARS</text>
+  <text x="1784" y="92" text-anchor="end" class="s95 t-ink3">VOCABULARY — EVERY LABEL USES THE GLOSSARY IN ARCHITECTURE.MD §2</text>
+  <text x="1784" y="108" text-anchor="end" class="s95 w6 t-ink2">FOR A WORKING DESIGNER BUILDING THEIR OWN AGENT STUDIO — PATTERNS TO ADAPT, NOT A CONFIGURATION TO COPY</text>
+  <line x1="56" y1="112" x2="1784" y2="112" class="rule"/>
+
+  <!-- ============ ZONE TAGS ============ -->
+  <g class="s10 w6 track t-blue">
+    <text x="56" y="134">A · OWNERSHIP — WHO RUNS WHAT, AND WHO MAY SPAWN</text>
+    <text x="1180" y="134">B · REQUEST LIFECYCLE</text>
+    <text x="1584" y="134">C · MARGIN</text>
+  </g>
+  <g class="s95 t-ink3">
+    <text x="1092" y="134" text-anchor="end" class="s9 track2">DOC §3–§8</text>
+    <text x="1560" y="134" text-anchor="end" class="s9 track2">DOC §9 + §12</text>
+    <text x="1788" y="134" text-anchor="end" class="s9 track2">DOC §10 + §11</text>
+    <text x="1180" y="148">EIGHT STEPS · INTAKE → LOOP CLOSURE · ↺ STEP 8 FEEDS STEP 1</text>
+    <text x="1584" y="148">LEGEND + LAWS</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- ZONE A · OWNERSHIP -->
+  <!-- ================================================================ -->
+
+  <!-- left annotation: handoff + returns -->
+  <g>
+    <text x="56" y="168" class="s10 w6 track t-ink">HANDOFF DISCIPLINE</text>
+    <text x="56" y="186" class="s10 t-ink2">every worker brief opens with the agreed</text>
+    <text x="56" y="200" class="s10 t-ink2">concept — verbatim — at the top; then</text>
+    <text x="56" y="214" class="s10 t-ink2">scope, non-goals, criteria, boundaries.</text>
+    <text x="56" y="228" class="s10 w6 track t-ink">RETURNS</text>
+    <text x="56" y="246" class="s10 t-ink2">every completion reports with evidence:</text>
+    <text x="56" y="260" class="s10 t-ink2">build output · tests · file listings —</text>
+    <text x="56" y="274" class="s10 t-ink2">prose is not proof.</text>
+    <path d="M372 186 H378" class="leader"/>
+    <path d="M372 250 L382 236" class="leader"/>
+  </g>
+
+  <!-- right annotation: escalation -->
+  <g>
+    <text x="846" y="206" class="s10 w6 track t-ink">ESCALATE, DON'T EXPAND</text>
+    <text x="846" y="224" class="s10 t-ink2">product, scope + architecture choices</text>
+    <text x="846" y="238" class="s10 t-ink2">route back up — children never</text>
+    <text x="846" y="252" class="s10 t-ink2">silently expand scope.</text>
+    <path d="M846 210 H826" class="leader"/>
+  </g>
+
+  <!-- Orchestrator -->
+  <g class="layer">
+    <title>Orchestrator — plans, delegates, gates, synthesizes; never writes the work itself</title>
+    <rect x="382" y="150" width="440" height="102" class="node-orch"/>
+    <circle cx="521" cy="172" r="3.2" fill="var(--paper)"/>
+    <text x="602" y="178" text-anchor="middle" class="s16 w6 t-paper track2">ORCHESTRATOR</text>
+    <text x="602" y="200" text-anchor="middle" class="s10 t-paper2">plans · delegates · gates · synthesizes — never writes the work itself</text>
+    <line x1="410" y1="212" x2="794" y2="212" stroke="var(--paper)" stroke-width="0.75" opacity=".35"/>
+    <rect x="396" y="222" width="6" height="6" class="gate-bar"/>
+    <text x="410" y="229" class="s95 t-paper2">GATE-KEEPER — the user decides at gates: the agent stops, reports,</text>
+    <text x="410" y="243" class="s95 t-paper2">the Orchestrator returns the verdict — never approves for the user.</text>
+  </g>
+
+  <!-- routing bus -->
+  <path d="M602 252 V276" class="c-bus"/>
+  <path d="M374 276 H1042" class="c-bus"/>
+  <path d="M374 276 V294" class="c-main" marker-end="url(#arr)"/>
+  <path d="M814 276 V294" class="c-main" marker-end="url(#arr)"/>
+  <path d="M1042 276 V294" class="c-main" marker-end="url(#arr)"/>
+  <rect x="612" y="258" width="350" height="16" fill="var(--paper)"/>
+  <text x="618" y="270" class="s95 t-ink3 track2">HANDOFF — CONCEPT VERBATIM AT THE TOP OF EVERY BRIEF</text>
+  <text x="1050" y="290" class="s85 t-ink3 track2">LANES + SUPPORT</text>
+
+  <!-- ============ STUDIO DEPARTMENT ============ -->
+  <g class="layer">
+    <title>Studio department — two directors with fixed rosters; the Strategist is advisory-only</title>
+    <rect x="56" y="302" width="636" height="692" class="container"/>
+    <rect x="56" y="302" width="636" height="32" class="hdr"/>
+    <line x1="56" y1="334" x2="692" y2="334" class="rule"/>
+    <rect x="72" y="284" width="92" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1"/>
+    <text x="118" y="295" text-anchor="middle" class="s9 w6 track t-ink">DEPARTMENT</text>
+    <text x="72" y="323" class="s13 w7 track2 t-ink">STUDIO</text>
+    <text x="676" y="323" text-anchor="end" class="s95 t-ink2">SPAWN RULE — a manager spawns only its listed workers · workers never spawn</text>
+
+    <!-- Strategist (advisory, frontier) -->
+    <g class="layer">
+      <title>Strategist — two-phase creative planner, advisory-only</title>
+      <rect x="118" y="354" width="528" height="58" class="node node-adv"/>
+      <use href="#mk-f" x="138" y="372"/>
+      <text x="156" y="378" class="s125 w6 track2 t-ink">STRATEGIST</text>
+      <text x="156" y="398" class="s10 t-ink2">ADVISORY-ONLY — never executes, never edits, never spawns</text>
+    </g>
+    <path d="M224 412 V452" class="c-adv"/>
+    <path d="M536 412 V452" class="c-adv"/>
+    <text x="232" y="438" class="s85 t-ink3 track2">ADVISORY</text>
+    <text x="544" y="438" class="s85 t-ink3 track2">ADVISORY</text>
+
+    <!-- Technical Director -->
+    <g class="layer">
+      <title>Technical Director — backend and general-programming manager</title>
+      <rect x="96" y="456" width="256" height="56" class="node node-mgr"/>
+      <use href="#mk-w" x="112" y="474"/>
+      <text x="126" y="480" class="s125 w6 track2 t-ink">TECHNICAL DIRECTOR</text>
+      <text x="126" y="498" class="s10 t-ink2">backend + general-programming manager</text>
+    </g>
+    <!-- Art Director -->
+    <g class="layer">
+      <title>Art Director — visual-design manager</title>
+      <rect x="404" y="456" width="264" height="56" class="node node-mgr"/>
+      <use href="#mk-w" x="420" y="474"/>
+      <text x="434" y="480" class="s125 w6 track2 t-ink">ART DIRECTOR</text>
+      <text x="434" y="498" class="s10 t-ink2">visual-design manager</text>
+    </g>
+
+    <!-- TD spawn rail -->
+    <path d="M224 512 V542 H106 V736" class="c-thin"/>
+    <path d="M106 600 H112" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M106 668 H112" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M106 736 H112" class="c-thin" marker-end="url(#arr)"/>
+    <text x="132" y="556" class="s85 t-ink3 track2">SPAWN</text>
+    <!-- AD spawn rail -->
+    <path d="M536 512 V542 H414 V872" class="c-thin"/>
+    <path d="M414 600 H420" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M414 668 H420" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M414 736 H420" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M414 804 H420" class="c-thin" marker-end="url(#arr)"/>
+    <path d="M414 872 H420" class="c-thin" marker-end="url(#arr)"/>
+    <text x="440" y="556" class="s85 t-ink3 track2">SPAWN</text>
+
+    <!-- TD workers -->
+    <g class="layer"><title>Developer</title>
+      <rect x="112" y="572" width="224" height="56" class="node"/>
+      <use href="#mk-w" x="128" y="590"/><text x="142" y="596" class="s12 w5 t-ink">DEVELOPER</text>
+      <text x="142" y="614" class="s95 t-ink2">backend + general programming</text>
+    </g>
+    <g class="layer"><title>Game Developer</title>
+      <rect x="112" y="640" width="224" height="56" class="node"/>
+      <use href="#mk-w" x="128" y="658"/><text x="142" y="664" class="s12 w5 t-ink">GAME DEVELOPER</text>
+      <text x="142" y="682" class="s95 t-ink2">native/desktop game code</text>
+    </g>
+    <g class="layer"><title>Scout</title>
+      <rect x="112" y="708" width="224" height="56" class="node"/>
+      <use href="#mk-w" x="128" y="726"/><text x="142" y="732" class="s12 w5 t-ink">SCOUT</text>
+      <text x="142" y="750" class="s95 t-ink2">codebase + structure recon</text>
+    </g>
+
+    <!-- AD workers -->
+    <g class="layer"><title>UI Designer</title>
+      <rect x="420" y="572" width="232" height="56" class="node"/>
+      <use href="#mk-w" x="436" y="590"/><text x="450" y="596" class="s12 w5 t-ink">UI DESIGNER</text>
+      <text x="450" y="614" class="s95 t-ink2">web/digital UI implementation</text>
+    </g>
+    <g class="layer"><title>Layout Designer</title>
+      <rect x="420" y="640" width="232" height="56" class="node"/>
+      <use href="#mk-w" x="436" y="658"/><text x="450" y="664" class="s12 w5 t-ink">LAYOUT DESIGNER</text>
+      <text x="450" y="682" class="s95 t-ink2">poster/editorial/print</text>
+    </g>
+    <g class="layer"><title>Motion Designer</title>
+      <rect x="420" y="708" width="232" height="56" class="node"/>
+      <use href="#mk-w" x="436" y="726"/><text x="450" y="732" class="s12 w5 t-ink">MOTION DESIGNER</text>
+      <text x="450" y="750" class="s95 t-ink2">motion/video implementation</text>
+    </g>
+    <g class="layer"><title>Generative Designer — algorithmic art; also a studio-wide reviewer</title>
+      <rect x="420" y="776" width="232" height="56" class="node node-spec"/>
+      <use href="#mk-s" x="436" y="794"/><text x="450" y="800" class="s12 w5 t-ink">GENERATIVE DESIGNER</text>
+      <text x="450" y="818" class="s95 t-ink2">algorithmic/generative art</text>
+      <text x="450" y="829" class="s85 t-ink3 track2">ALSO A STUDIO-WIDE REVIEWER</text>
+    </g>
+    <g class="layer"><title>Critic — sole visual gate, fresh context per cycle</title>
+      <rect x="420" y="844" width="232" height="56" class="node node-spec"/>
+      <use href="#mk-s" x="436" y="862"/><text x="450" y="868" class="s12 w5 t-ink">CRITIC</text>
+      <text x="450" y="886" class="s95 t-ink2">fresh context per cycle</text>
+      <text x="450" y="897" class="s85 t-ink3 track2">SOLE VISUAL GATE · STUDIO-WIDE</text>
+    </g>
+
+    <!-- Researcher (shared) -->
+    <g class="layer"><title>Researcher — deep web research, shared across both directors</title>
+      <rect x="96" y="922" width="556" height="56" class="node node-spec"/>
+      <use href="#mk-s" x="112" y="940"/><text x="130" y="946" class="s12 w5 t-ink">RESEARCHER</text>
+      <text x="130" y="964" class="s95 t-ink2">deep web research — technical + design modes · shared across both directors</text>
+      <rect x="576" y="936" width="60" height="16" class="chip-ink"/>
+      <text x="606" y="947" text-anchor="middle" class="s9 w6 track t-paper">SHARED</text>
+    </g>
+    <path d="M352 484 H378 V916" class="c-med" marker-end="url(#arr)"/>
+    <path d="M404 484 H394 V916" class="c-med" marker-end="url(#arr)"/>
+    <rect x="366" y="882" width="44" height="14" fill="var(--field)"/>
+    <text x="370" y="893" class="s85 w6 track t-ink2">SHARED</text>
+  </g>
+
+  <!-- ============ COMMERCIAL OPS ============ -->
+  <g class="layer">
+    <title>Commercial Ops — quotes, invoices, credit notes, client registry, AR, under a control doctrine</title>
+    <rect x="716" y="302" width="196" height="218" class="container"/>
+    <rect x="716" y="302" width="196" height="32" class="hdr"/>
+    <line x1="716" y1="334" x2="912" y2="334" class="rule"/>
+    <rect x="732" y="284" width="92" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1"/>
+    <text x="778" y="295" text-anchor="middle" class="s9 w6 track t-ink">DEPARTMENT</text>
+    <text x="732" y="323" class="s105 w7 track2 t-ink">COMMERCIAL OPS</text>
+
+    <g class="layer"><title>Director — commercial ops manager</title>
+      <rect x="740" y="354" width="148" height="64" class="node node-mgr"/>
+      <use href="#mk-w" x="756" y="372"/><text x="770" y="378" class="s12 w6 t-ink">DIRECTOR</text>
+      <text x="770" y="396" class="s95 t-ink2">quotes · invoices</text>
+      <text x="770" y="408" class="s95 t-ink2">registry · AR</text>
+    </g>
+    <path d="M814 418 V436" class="c-thin" marker-end="url(#arr)"/>
+    <g class="layer"><title>Bookkeeper</title>
+      <rect x="740" y="442" width="148" height="64" class="node"/>
+      <use href="#mk-w" x="756" y="460"/><text x="770" y="466" class="s12 w5 t-ink">BOOKKEEPER</text>
+      <text x="770" y="484" class="s95 t-ink2">deterministic code</text>
+      <text x="770" y="496" class="s95 t-ink2">owns arithmetic</text>
+    </g>
+  </g>
+  <!-- control doctrine annotation -->
+  <g>
+    <text x="716" y="570" class="s10 w6 track t-ink">CONTROL DOCTRINE · DOC §6</text>
+    <text x="716" y="588" class="s95 t-ink2">deterministic code owns arithmetic</text>
+    <text x="716" y="601" class="s95 t-ink2">fail-closed close gates — any</text>
+    <text x="716" y="614" class="s95 t-ink2">failure means no close</text>
+    <text x="716" y="627" class="s95 t-ink2">untrusted data is data, not</text>
+    <text x="716" y="640" class="s95 t-ink2">instructions</text>
+    <text x="716" y="653" class="s95 t-ink2">two-step approval of an</text>
+    <text x="716" y="666" class="s95 t-ink2">exact artifact</text>
+    <text x="716" y="679" class="s95 t-ink2">never moves money · never files</text>
+    <text x="716" y="692" class="s95 t-ink2">· never sends without approval</text>
+    <text x="716" y="705" class="s95 t-ink2">confidence routes review — it</text>
+    <text x="716" y="718" class="s95 t-ink2">never grants permission</text>
+    <path d="M814 520 V560" class="leader"/>
+  </g>
+
+  <!-- ============ SIDE RAILS ============ -->
+  <!-- Workshop Lane -->
+  <g class="layer">
+    <title>Workshop Lane — ideas become briefs; advisory agents only, nothing executes without the user</title>
+    <rect x="936" y="302" width="212" height="178" class="container-rail"/>
+    <rect x="936" y="302" width="212" height="32" class="hdr"/>
+    <line x1="936" y1="334" x2="1148" y2="334" class="rule"/>
+    <rect x="952" y="284" width="76" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1"/>
+    <text x="990" y="295" text-anchor="middle" class="s9 w6 track t-ink">SIDE RAIL</text>
+    <text x="952" y="323" class="s11 w7 track2 t-ink">WORKSHOP LANE</text>
+    <g class="layer"><title>Planner — advisory, user-gated</title>
+      <rect x="952" y="354" width="180" height="64" class="node node-adv"/>
+      <text x="966" y="380" class="s12 w6 t-ink">PLANNER</text>
+      <text x="966" y="398" class="s95 t-ink2">advisory · user-gated</text>
+      <text x="966" y="410" class="s95 t-ink2">structural axis</text>
+    </g>
+    <text x="952" y="436" class="s95 t-ink2">nothing executes inside;</text>
+    <text x="952" y="448" class="s95 t-ink2">research before convergence;</text>
+    <text x="952" y="460" class="s95 t-ink2">one artifact out — a brief</text>
+    <text x="952" y="472" class="s95 t-ink2">or a change plan</text>
+  </g>
+  <path d="M1042 480 V498" class="c-thin" marker-end="url(#arr)"/>
+
+  <!-- Revision Lane -->
+  <g class="layer">
+    <title>Revision Lane — short changes without the department pipeline</title>
+    <rect x="936" y="504" width="212" height="200" class="container-rail"/>
+    <rect x="936" y="504" width="212" height="32" class="hdr"/>
+    <line x1="936" y1="536" x2="1148" y2="536" class="rule"/>
+    <rect x="952" y="486" width="76" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1"/>
+    <text x="990" y="497" text-anchor="middle" class="s9 w6 track t-ink">SIDE RAIL</text>
+    <text x="952" y="525" class="s11 w7 track2 t-ink">REVISION LANE</text>
+    <g class="layer"><title>Reviser</title>
+      <rect x="952" y="556" width="180" height="72" class="node"/>
+      <use href="#mk-w" x="966" y="574"/><text x="980" y="580" class="s12 w5 t-ink">REVISER</text>
+      <text x="966" y="600" class="s95 t-ink2">reads strategy + state</text>
+      <text x="966" y="612" class="s95 t-ink2">first · fixes directly, or</text>
+      <text x="966" y="624" class="s95 t-ink2">spawns one craft worker</text>
+    </g>
+    <text x="952" y="644" class="s95 t-ink2">scope law — ≤ ~5 files, one</text>
+    <text x="952" y="656" class="s95 t-ink2">sitting · no new features,</text>
+    <text x="952" y="668" class="s95 t-ink2">architecture, concept or</text>
+    <text x="952" y="680" class="s95 t-ink2">research · never edits files</text>
+    <text x="952" y="692" class="s95 t-ink2">an active run is writing</text>
+  </g>
+  <path d="M1042 704 V722" class="c-thin" marker-end="url(#arr)"/>
+
+  <!-- Support crew -->
+  <g class="layer">
+    <title>Support crew — utility, version control, adversarial review</title>
+    <rect x="936" y="728" width="212" height="290" class="container-rail"/>
+    <rect x="936" y="728" width="212" height="32" class="hdr"/>
+    <line x1="936" y1="760" x2="1148" y2="760" class="rule"/>
+    <rect x="952" y="710" width="100" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1"/>
+    <text x="1002" y="721" text-anchor="middle" class="s9 w6 track t-ink">SIDE RAIL</text>
+    <text x="952" y="749" class="s11 w7 track2 t-ink">SUPPORT CREW</text>
+    <g class="layer"><title>Utility Agent</title>
+      <rect x="952" y="780" width="180" height="70" class="node node-spec"/>
+      <use href="#mk-s" x="966" y="798"/><text x="980" y="804" class="s12 w5 t-ink">UTILITY AGENT</text>
+      <text x="966" y="822" class="s95 t-ink2">heavy lifter for</text>
+      <text x="966" y="834" class="s95 t-ink2">non-project work ·</text>
+      <text x="966" y="846" class="s95 t-ink2">may parallelize</text>
+    </g>
+    <g class="layer"><title>Version-Control Agent</title>
+      <rect x="952" y="858" width="180" height="70" class="node"/>
+      <use href="#mk-w" x="966" y="874"/><text x="980" y="880" class="s105 w5 t-ink">VERSION-CONTROL</text>
+      <text x="980" y="892" class="s105 w5 t-ink">AGENT</text>
+      <text x="966" y="908" class="s95 t-ink2">commits + pushes;</text>
+      <text x="966" y="920" class="s95 t-ink2">never writes code</text>
+    </g>
+    <g class="layer"><title>Adversarial Reviewer — fresh context, different model family</title>
+      <rect x="952" y="936" width="180" height="70" class="node node-adv"/>
+      <text x="966" y="958" class="s105 w6 t-ink">ADVERSARIAL</text>
+      <text x="966" y="970" class="s105 w6 t-ink">REVIEWER</text>
+      <text x="966" y="986" class="s95 t-ink2">fresh context · different</text>
+      <text x="966" y="998" class="s95 t-ink2">model family · read-only</text>
+    </g>
+  </g>
+
+  <!-- how to read -->
+  <line x1="56" y1="1026" x2="1148" y2="1026" class="hairline"/>
+  <text x="56" y="1044" class="s10 w6 track t-ink">HOW TO READ</text>
+  <text x="180" y="1044" class="s10 t-ink2">DEPTH IS AUTHORITY — the top node routes and decides · managers run departments · workers implement · solid = authority + spawn chain · dashed = advisory seat</text>
+  <text x="180" y="1060" class="s10 t-ink2">side rails are peers of the departments, not subordinates · tier marks encode model-cost tiers — legend at C · contracts with doc §10</text>
+  <text x="180" y="1076" class="s10 t-ink2">runs on a coding-agent harness — hierarchical subagent spawning · per-agent model routing · tool extension · per-agent skill packs</text>
+
+  <!-- ================================================================ -->
+  <!-- ZONE B · REQUEST LIFECYCLE -->
+  <!-- ================================================================ -->
+  <g id="lifecycle">
+    <!-- spine -->
+    <path d="M1206 187 V677" class="c-bus"/>
+    <path d="M1206 187 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 257 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 327 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 397 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 467 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 537 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 607 H1220" class="c-med" marker-end="url(#arr)"/>
+    <path d="M1206 677 H1220" class="c-med" marker-end="url(#arr)"/>
+
+    <g class="layer"><title>Step 1 — Intake & routing</title>
+      <rect x="1226" y="158" width="308" height="58" class="node"/>
+      <rect x="1226" y="169" width="36" height="36" class="chip"/><text x="1244" y="193" text-anchor="middle" class="s15 w7 t-blue">1</text>
+      <text x="1274" y="182" class="s125 w6 t-ink">INTAKE &amp; ROUTING</text>
+      <text x="1274" y="198" class="s95 t-ink2">departments for production · lanes</text>
+      <text x="1274" y="210" class="s95 t-ink2">for thinking · trivial answered directly</text>
+    </g>
+    <g class="layer"><title>Step 2 — Discovery (on ambiguity)</title>
+      <rect x="1226" y="228" width="308" height="58" class="node"/>
+      <rect x="1226" y="239" width="36" height="36" class="chip"/><text x="1244" y="263" text-anchor="middle" class="s15 w7 t-blue">2</text>
+      <text x="1274" y="252" class="s125 w6 t-ink">DISCOVERY (ON AMBIGUITY)</text>
+      <text x="1274" y="268" class="s95 t-ink2">bounded intent interview with the user;</text>
+      <text x="1274" y="280" class="s95 t-ink2">confirmed intent persists in state files</text>
+    </g>
+    <g class="layer"><title>Step 3 — Research + recon (parallel)</title>
+      <rect x="1226" y="298" width="308" height="58" class="node"/>
+      <rect x="1226" y="309" width="36" height="36" class="chip"/><text x="1244" y="333" text-anchor="middle" class="s15 w7 t-blue">3</text>
+      <text x="1274" y="322" class="s125 w6 t-ink">RESEARCH + RECON (PARALLEL)</text>
+      <text x="1274" y="338" class="s95 t-ink2">evidence brief + verified reference set,</text>
+      <text x="1274" y="350" class="s95 t-ink2">in parallel with codebase recon</text>
+    </g>
+    <g class="layer"><title>Step 4 — Evidence synthesis</title>
+      <rect x="1226" y="368" width="308" height="58" class="node"/>
+      <rect x="1226" y="379" width="36" height="36" class="chip"/><text x="1244" y="403" text-anchor="middle" class="s15 w7 t-blue">4</text>
+      <text x="1274" y="392" class="s125 w6 t-ink">EVIDENCE SYNTHESIS</text>
+      <text x="1274" y="408" class="s95 t-ink2">one evidence packet — intent, constraints,</text>
+      <text x="1274" y="420" class="s95 t-ink2">references · settled vs unresolved</text>
+    </g>
+    <g class="layer"><title>Step 5 — Strategy: diverge, user concept gate, converge</title>
+      <rect x="1226" y="438" width="308" height="58" class="node"/>
+      <rect x="1226" y="438" width="4" height="58" class="gate-bar"/>
+      <rect x="1230" y="449" width="36" height="36" class="chip-oxide"/><text x="1248" y="473" text-anchor="middle" class="s15 w7 t-paper">5</text>
+      <text x="1278" y="462" class="s125 w6 t-ink">STRATEGY</text>
+      <text x="1526" y="462" text-anchor="end" class="s85 w6 track t-oxide">HARD GATE — USER SELECTS</text>
+      <text x="1278" y="478" class="s95 t-ink2">diverge → user concept gate → converge ·</text>
+      <text x="1278" y="490" class="s95 t-ink2">pure technical work skips the strategist</text>
+    </g>
+    <g class="layer"><title>Step 6 — Build: managers drive workers</title>
+      <rect x="1226" y="508" width="308" height="58" class="node"/>
+      <rect x="1226" y="519" width="36" height="36" class="chip"/><text x="1244" y="543" text-anchor="middle" class="s15 w7 t-blue">6</text>
+      <text x="1274" y="532" class="s125 w6 t-ink">BUILD</text>
+      <text x="1274" y="548" class="s95 t-ink2">managers → workers · concept verbatim ·</text>
+      <text x="1274" y="560" class="s95 t-ink2">single-writer partitions · slices end green</text>
+    </g>
+    <g class="layer"><title>Step 7 — Review + report</title>
+      <rect x="1226" y="578" width="308" height="58" class="node"/>
+      <rect x="1226" y="589" width="36" height="36" class="chip"/><text x="1244" y="613" text-anchor="middle" class="s15 w7 t-blue">7</text>
+      <text x="1274" y="602" class="s125 w6 t-ink">REVIEW + REPORT</text>
+      <text x="1274" y="618" class="s95 t-ink2">fresh-context review; the orchestrator</text>
+      <text x="1274" y="630" class="s95 t-ink2">validates deliverables per criterion</text>
+    </g>
+    <g class="layer"><title>Step 8 — Unify (close the loop)</title>
+      <rect x="1226" y="648" width="308" height="58" class="node"/>
+      <rect x="1226" y="659" width="36" height="36" class="chip"/><text x="1244" y="683" text-anchor="middle" class="s15 w7 t-blue">8</text>
+      <text x="1274" y="672" class="s125 w6 t-ink">UNIFY (CLOSE THE LOOP)</text>
+      <text x="1274" y="688" class="s95 t-ink2">reconcile plan vs delivered; record</text>
+      <text x="1274" y="700" class="s95 t-ink2">results, deviations, residual risks</text>
+    </g>
+    <!-- loop closure return -->
+    <path d="M1534 677 H1548 V187 H1538" class="c-ret" marker-end="url(#arr2)"/>
+  </g>
+
+  <!-- toolchain -->
+  <g id="toolchain">
+    <text x="1180" y="740" class="s10 w6 track t-ink">TOOLCHAIN — FIVE OWNED APPS · THREE DRIVER SURFACES EACH</text>
+    <g class="s11 w6 t-ink">
+      <text x="1180" y="768">VECTORCRAFT</text>
+      <text x="1180" y="800">PHOTOCRAFT</text>
+      <text x="1180" y="832">DESIGNCRAFT</text>
+      <text x="1180" y="864">PDFCRAFT</text>
+      <text x="1180" y="896">CADCRAFT</text>
+    </g>
+    <g class="s85 t-ink3">
+      <text x="1180" y="780">vector illustration</text>
+      <text x="1180" y="812">raster image editing</text>
+      <text x="1180" y="844">page layout</text>
+      <text x="1180" y="876">pdf assembly</text>
+      <text x="1180" y="908">cad drafting</text>
+    </g>
+    <g class="hairline">
+      <line x1="1180" y1="786" x2="1560" y2="786"/>
+      <line x1="1180" y1="818" x2="1560" y2="818"/>
+      <line x1="1180" y1="850" x2="1560" y2="850"/>
+      <line x1="1180" y1="882" x2="1560" y2="882"/>
+      <line x1="1180" y1="914" x2="1560" y2="914"/>
+    </g>
+    <!-- driver chips per row -->
+    <g>
+      <rect x="1400" y="760" width="44" height="20" class="chip-ink"/><text x="1422" y="773" text-anchor="middle" class="s9 w6 t-paper">CLI</text>
+      <rect x="1452" y="760" width="44" height="20" class="chip"/><text x="1474" y="773" text-anchor="middle" class="s9 w5 t-ink2">MCP</text>
+      <rect x="1504" y="760" width="44" height="20" class="chip"/><text x="1526" y="773" text-anchor="middle" class="s9 w5 t-ink2">LIVE</text>
+      <rect x="1400" y="792" width="44" height="20" class="chip-ink"/><text x="1422" y="805" text-anchor="middle" class="s9 w6 t-paper">CLI</text>
+      <rect x="1452" y="792" width="44" height="20" class="chip"/><text x="1474" y="805" text-anchor="middle" class="s9 w5 t-ink2">MCP</text>
+      <rect x="1504" y="792" width="44" height="20" class="chip"/><text x="1526" y="805" text-anchor="middle" class="s9 w5 t-ink2">LIVE</text>
+      <rect x="1400" y="824" width="44" height="20" class="chip-ink"/><text x="1422" y="837" text-anchor="middle" class="s9 w6 t-paper">CLI</text>
+      <rect x="1452" y="824" width="44" height="20" class="chip"/><text x="1474" y="837" text-anchor="middle" class="s9 w5 t-ink2">MCP</text>
+      <rect x="1504" y="824" width="44" height="20" class="chip"/><text x="1526" y="837" text-anchor="middle" class="s9 w5 t-ink2">LIVE</text>
+      <rect x="1400" y="856" width="44" height="20" class="chip-ink"/><text x="1422" y="869" text-anchor="middle" class="s9 w6 t-paper">CLI</text>
+      <rect x="1452" y="856" width="44" height="20" class="chip"/><text x="1474" y="869" text-anchor="middle" class="s9 w5 t-ink2">MCP</text>
+      <rect x="1504" y="856" width="44" height="20" class="chip"/><text x="1526" y="869" text-anchor="middle" class="s9 w5 t-ink2">LIVE</text>
+      <rect x="1400" y="888" width="44" height="20" class="chip-ink"/><text x="1422" y="901" text-anchor="middle" class="s9 w6 t-paper">CLI</text>
+      <rect x="1452" y="888" width="44" height="20" class="chip"/><text x="1474" y="901" text-anchor="middle" class="s9 w5 t-ink2">MCP</text>
+      <rect x="1504" y="888" width="44" height="20" class="chip"/><text x="1526" y="901" text-anchor="middle" class="s9 w5 t-ink2">LIVE</text>
+    </g>
+    <g class="s10 t-ink3 w6"><text x="1445" y="774">&gt;</text><text x="1497" y="774">&gt;</text>
+      <text x="1445" y="806">&gt;</text><text x="1497" y="806">&gt;</text>
+      <text x="1445" y="838">&gt;</text><text x="1497" y="838">&gt;</text>
+      <text x="1445" y="870">&gt;</text><text x="1497" y="870">&gt;</text>
+      <text x="1445" y="902">&gt;</text><text x="1497" y="902">&gt;</text>
+    </g>
+    <text x="1180" y="932" class="s95 t-ink2">DRIVERS IN PRIORITY ORDER — HEADLESS CLI preferred (scriptable,</text>
+    <text x="1180" y="945" class="s95 t-ink2">deterministic) → MCP SERVER → LIVE-APP BRIDGE (last resort).</text>
+    <text x="1180" y="958" class="s95 t-ink2">Wire whichever surfaces your harness supports — prefer the CLI.</text>
+    <rect x="1180" y="968" width="380" height="48" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <text x="1192" y="984" class="s95 w7 track2 t-ink">VERIFICATION GATES</text>
+    <text x="1192" y="998" class="s95 t-ink2">render self-check · geometry read-back · import-warnings-as-data</text>
+    <text x="1192" y="1010" class="s95 t-ink2">capture + read back · query real geometry · never ignore silently</text>
+    <text x="1180" y="1036" class="s10 w6 track t-ink">PARALLEL ASSET LANES — SWAPPABLE, NOT DEPENDENCIES</text>
+    <rect x="1180" y="1044" width="88" height="18" class="chip"/><text x="1224" y="1056" text-anchor="middle" class="s9 w5 t-ink2">PROCEDURAL</text>
+    <rect x="1278" y="1044" width="98" height="18" class="chip"/><text x="1327" y="1056" text-anchor="middle" class="s9 w5 t-ink2">STOCK SEARCH</text>
+    <rect x="1386" y="1044" width="122" height="18" class="chip"/><text x="1447" y="1056" text-anchor="middle" class="s9 w5 t-ink2">IMAGE GENERATION</text>
+    <text x="1180" y="1080" class="s95 t-ink3">any one lane swappable without touching the toolchain leg</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- ZONE C · MARGIN -->
+  <!-- ================================================================ -->
+  <g id="legend">
+    <text x="1584" y="172" class="s105 w7 track2 t-ink">MODEL-COST TIERS</text>
+    <use href="#mk-w" x="1592" y="188"/>
+    <text x="1612" y="192" class="s11 w6 t-ink">WORKHORSE</text>
+    <text x="1612" y="206" class="s95 t-ink2">economical tier for code, synthesis</text>
+    <text x="1612" y="218" class="s95 t-ink2">+ structured work — carries the</text>
+    <text x="1612" y="230" class="s95 t-ink2">overwhelming majority of seats</text>
+    <use href="#mk-s" x="1592" y="248"/>
+    <text x="1612" y="252" class="s11 w6 t-ink">SPECIALIST</text>
+    <text x="1612" y="266" class="s95 t-ink2">narrow, higher-cost tier — vision</text>
+    <text x="1612" y="278" class="s95 t-ink2">+ judgment seats</text>
+    <use href="#mk-f" x="1592" y="296"/>
+    <text x="1612" y="300" class="s11 w6 t-ink">FRONTIER</text>
+    <text x="1612" y="314" class="s95 t-ink2">deliberately expensive — exactly</text>
+    <text x="1612" y="326" class="s95 t-ink2">one seat</text>
+    <rect x="1585" y="340" width="14" height="14" fill="none" stroke="var(--ink)" stroke-width="1.25" stroke-dasharray="4 3"/>
+    <text x="1612" y="352" class="s11 w6 t-ink">ADVISORY SEAT</text>
+    <text x="1612" y="366" class="s95 t-ink2">fixed seat — advises, never</text>
+    <text x="1612" y="378" class="s95 t-ink2">executes; user-gated</text>
+    <g class="s9 t-ink3">
+      <text x="1584" y="404">tiers are declared per seat in</text>
+      <text x="1584" y="416">each agent's own definition file</text>
+      <text x="1584" y="428">— the single source of truth;</text>
+      <text x="1584" y="440">derived summaries are generated,</text>
+      <text x="1584" y="452">never hand-edited · decisions by</text>
+      <text x="1584" y="464">research + deduction, never</text>
+      <text x="1584" y="476">bake-offs</text>
+    </g>
+    <line x1="1584" y1="492" x2="1788" y2="492" class="hairline"/>
+
+    <text x="1584" y="514" class="s105 w7 track2 t-ink">THE TEN LAWS</text>
+    <g>
+      <text x="1588" y="534" class="s9 t-ink3">01</text><text x="1612" y="534" class="s95 w6 t-ink">RESEARCH-FIRST</text>
+      <text x="1612" y="548" class="s95 t-ink2">evidence precedes plan</text>
+      <text x="1588" y="576" class="s9 t-ink3">02</text><text x="1612" y="576" class="s95 w6 t-ink">CREATIVE GATES ARE HARD GATES</text>
+      <text x="1612" y="590" class="s95 t-ink2">skipped gates get logged —</text>
+      <text x="1612" y="602" class="s95 t-ink2">never passed silently</text>
+      <text x="1588" y="626" class="s9 t-ink3">03</text><text x="1612" y="626" class="s95 w6 t-ink">SINGLE WRITER PER FILE</text>
+      <text x="1612" y="640" class="s95 t-ink2">partition directories —</text>
+      <text x="1612" y="652" class="s95 t-ink2">never co-edit</text>
+      <text x="1588" y="676" class="s9 t-ink3">04</text><text x="1612" y="676" class="s95 w6 t-ink">ASYNC-FIRST</text>
+      <text x="1612" y="690" class="s95 t-ink2">launch parallel, block</text>
+      <text x="1612" y="702" class="s95 t-ink2">deliberately</text>
+      <text x="1588" y="726" class="s9 t-ink3">05</text><text x="1612" y="726" class="s95 w6 t-ink">ESCALATE, DON'T EXPAND</text>
+      <text x="1612" y="740" class="s95 t-ink2">scope choices route back up</text>
+      <text x="1588" y="764" class="s9 t-ink3">06</text><text x="1612" y="764" class="s95 w6 t-ink">SPAWN HIERARCHY</text>
+      <text x="1612" y="778" class="s95 t-ink2">only managers (+ named</text>
+      <text x="1612" y="790" class="s95 t-ink2">exceptions) spawn</text>
+      <text x="1588" y="814" class="s9 t-ink3">07</text><text x="1612" y="814" class="s95 w6 t-ink">COMPLETION CLAIMS CARRY EVIDENCE</text>
+      <text x="1612" y="828" class="s95 t-ink2">on-disk proof — prose is</text>
+      <text x="1612" y="840" class="s95 t-ink2">not proof</text>
+      <text x="1588" y="864" class="s9 t-ink3">08</text><text x="1612" y="864" class="s95 w6 t-ink">SELF-HEALING</text>
+      <text x="1612" y="878" class="s95 t-ink2">fix the class · log it · verify</text>
+      <text x="1588" y="902" class="s9 t-ink3">09</text><text x="1612" y="902" class="s95 w6 t-ink">ONE WORKSPACE PER PROJECT</text>
+      <text x="1612" y="916" class="s95 t-ink2">state files live with the work</text>
+      <text x="1588" y="940" class="s9 t-ink3">10</text><text x="1612" y="940" class="s95 w6 t-ink">CALIBRATED HONESTY</text>
+      <text x="1612" y="954" class="s95 t-ink2">agreement is earned by</text>
+      <text x="1612" y="966" class="s95 t-ink2">evidence, never rank</text>
+    </g>
+
+    <!-- title block -->
+    <rect x="1584" y="1016" width="204" height="64" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.25"/>
+    <line x1="1584" y1="1042" x2="1788" y2="1042" class="hairline"/>
+    <line x1="1584" y1="1061" x2="1788" y2="1061" class="hairline"/>
+    <text x="1594" y="1033" class="s95 w7 track2 t-ink">SYSTEM MAP — SHEET 1 OF 1</text>
+    <text x="1594" y="1055" class="s9 t-ink2">REV 1.0 · OCTOBER 2026</text>
+    <text x="1594" y="1073" class="s9 t-ink2">PRINT A3+ · PAN-ZOOM ON SCREEN</text>
+  </g>
+  </g><!-- /view -->
+</svg>
+</main>
+
+<div class="controls" role="group" aria-label="Map zoom controls">
+  <button type="button" data-z="in" aria-label="Zoom in">+</button>
+  <button type="button" data-z="out" aria-label="Zoom out">−</button>
+  <button type="button" data-z="reset" aria-label="Reset view">RESET</button>
+</div>
+
+<details class="outline">
+  <summary>Text outline — plain-text fallback of this map (for screen readers and retrieval-based agents)</summary>
+  <pre>
+OWNERSHIP (zone A)
+Orchestrator — plans, delegates, gates, synthesizes; never writes the work itself.
+  Gate-keeper: the user decides at gates; the agent at a gate stops and reports; the
+  Orchestrator returns the verdict — never approves for the user.
+├── Studio [department]
+│   ├── Strategist — advisory-only, never executes [frontier]
+│   ├── Technical Director [workhorse]
+│   │   ├── Developer [workhorse] — backend + general programming
+│   │   ├── Game Developer [workhorse] — native/desktop game code
+│   │   ├── Scout [workhorse] — codebase + structure recon
+│   │   └── (Researcher [specialist] — shared across both directors)
+│   └── Art Director [workhorse]
+│       ├── UI Designer [workhorse] — web/digital UI
+│       ├── Layout Designer [workhorse] — poster/editorial/print
+│       ├── Motion Designer [workhorse] — motion/video
+│       ├── Generative Designer [specialist] — algorithmic art; also a studio-wide reviewer
+│       └── Critic [specialist] — sole visual gate, fresh context per cycle
+├── Commercial Ops [department]
+│   └── Director [workhorse] — quotes, invoices, registry, AR
+│       └── Bookkeeper [workhorse] — deterministic tooling owns the arithmetic
+├── Workshop Lane [side rail] — Planner (advisory, user-gated)
+├── Revision Lane [side rail] — Reviser (≤ ~5 files, no new features)
+└── Support [side rail] — Utility Agent [specialist] · Version-Control Agent [workhorse] · Adversarial Reviewer (advisory)
+
+REQUEST LIFECYCLE (zone B): 1 intake & routing → 2 discovery (on ambiguity) →
+3 research + recon (parallel) → 4 evidence synthesis → 5 strategy (diverge →
+user concept gate → converge) → 6 build (managers → workers) → 7 review + report →
+8 unify (close the loop); step 8 feeds step 1.
+
+TOOLCHAIN (zone B): five owned apps — VectorCraft, PhotoCraft, DesignCraft, PDFCraft,
+CADCraft — each with three driver surfaces in priority order (CLI → MCP → live app),
+under verification gates (render self-check, geometry read-back, import-warnings-as-data).
+Parallel asset lanes: procedural generation · stock-photo search · image generation.
+
+MODEL-COST TIERS (zone C): workhorse (economical, majority of seats) · specialist
+(narrow, vision + judgment) · frontier (exactly one seat) · advisory seat (advises,
+never executes). Declared per seat in each agent's own definition file.
+
+THE TEN LAWS (zone C): research-first · creative gates are hard gates · single writer
+per file · async-first · escalate, don't expand · spawn hierarchy · completion claims
+carry evidence · self-healing (fix the class, log it) · one workspace per project ·
+calibrated honesty.
+  </pre>
+</details>
+
+<script>
+(function(){
+  const svg = document.getElementById('sheet');
+  const view = document.getElementById('view');
+  const VB = {w:1840, h:1120};
+  let k = 1, tx = 0, ty = 0;
+  const MIN = 0.4, MAX = 5;
+  function apply(){ view.setAttribute('transform', `translate(${tx} ${ty}) scale(${k})`); }
+  function toSvg(clientX, clientY){
+    const ctm = svg.getScreenCTM();
+    const p = new DOMPoint(clientX, clientY).matrixTransform(ctm.inverse());
+    return p;
+  }
+  function zoomAt(cx, cy, factor){
+    const s = toSvg(cx, cy);
+    const nk = Math.min(MAX, Math.max(MIN, k * factor));
+    if (nk === k) return;
+    tx = s.x - (s.x - tx) * (nk / k);
+    ty = s.y - (s.y - ty) * (nk / k);
+    k = nk; apply();
+  }
+  svg.addEventListener('wheel', function(e){
+    e.preventDefault();
+    const factor = Math.pow(1.0015, -e.deltaY * (e.deltaMode === 1 ? 16 : 1));
+    zoomAt(e.clientX, e.clientY, factor);
+  }, {passive:false});
+  let dragging = false, last = null;
+  svg.addEventListener('pointerdown', function(e){
+    dragging = true; last = {x:e.clientX, y:e.clientY};
+    svg.classList.add('dragging'); svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    const ctm = svg.getScreenCTM();
+    const scale = 1 / ctm.a; // client px -> viewBox units
+    tx += (e.clientX - last.x) * scale;
+    ty += (e.clientY - last.y) * scale;
+    last = {x:e.clientX, y:e.clientY};
+    apply();
+  });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev =>
+    svg.addEventListener(ev, function(){ dragging = false; svg.classList.remove('dragging'); }));
+  document.querySelectorAll('.controls button').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const z = btn.dataset.z;
+      if (z === 'reset'){ k = 1; tx = 0; ty = 0; apply(); svg.focus(); }
+      else {
+        const r = svg.getBoundingClientRect();
+        zoomAt(r.left + r.width/2, r.top + r.height/2, z === 'in' ? 1.25 : 0.8);
+      }
+    });
+  });
+  window.addEventListener('keydown', function(e){
+    if (e.target !== svg && e.target.tagName !== 'BUTTON') return;
+    if (e.key === '+' || e.key === '='){ const r = svg.getBoundingClientRect(); zoomAt(r.left+r.width/2, r.top+r.height/2, 1.25); }
+    else if (e.key === '-'){ const r = svg.getBoundingClientRect(); zoomAt(r.left+r.width/2, r.top+r.height/2, 0.8); }
+    else if (e.key === '0'){ k = 1; tx = 0; ty = 0; apply(); }
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
