@@ -1,0 +1,18 @@
+{
+  "zai": {
+    "type": "api",
+    "key": "YOUR_ZAI_KEY"
+  },
+  "minimax": {
+    "type": "api",
+    "key": "YOUR_MINIMAX_KEY"
+  },
+  "openrouter": {
+    "type": "api",
+    "key": "YOUR_OPENROUTER_KEY"
+  },
+  "tavily": {
+    "type": "api",
+    "key": "YOUR_TAVILY_KEY"
+  }
+}
