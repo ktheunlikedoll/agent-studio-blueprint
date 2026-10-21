@@ -13,7 +13,7 @@ done < <(find "$AGENTS" -name "*.md")
 echo "  ok"
 
 echo "── 2. Stale path patterns ──"
-HITS=$(grep -rln "/home/hermes\|\.hermes/\|output/\[run-id\]" "$AGENTS" 2>/dev/null)
+HITS=$(grep -rln "/home/<user>\|\.hermes/\|output/\[run-id\]" "$AGENTS" 2>/dev/null)
 if [ -n "$HITS" ]; then echo "$HITS" | sed 's/^/  FAIL: /'; FAIL=1; else echo "  ok"; fi
 
 echo "── 3. Tool-vs-prompt mismatch (shell verbs without bash) ──"
@@ -29,7 +29,7 @@ done < <(find "$AGENTS" -name "*.md")
 echo "  ok"
 
 echo "── 4. Manager/director run-discipline tripwire (RH-001) — string presence only, NOT behavioral verification ──"
-for f in "$AGENTS/studio/art-director.md" "$AGENTS/studio/tech-director.md" "$AGENTS/learnforge/director.md" "$AGENTS/youtube/director.md" "$AGENTS/packforge/builder.md"; do
+for f in "$AGENTS/studio/art-director.md" "$AGENTS/studio/tech-director.md" "$AGENTS/finance/director.md"; do
   grep -q "bg_wait" "$f" || { echo "  FAIL: $f (no bg_wait in allowlist — blocking tool is the Pi builtin; the old subagent_wait name is a ghost from the pre-2026-09 RH-001 patch)"; FAIL=1; }
   grep -q "RH-001" "$f" || { echo "  FAIL: $f (no run-discipline rule)"; FAIL=1; }
 done

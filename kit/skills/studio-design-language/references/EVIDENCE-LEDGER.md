@@ -62,12 +62,12 @@ Ledger version: **v1.2 (2026-09-17)**. Next annual review: 2027-08-31.
 
 ---
 
-# v1.2 APPENDIX — U2 craft-depth extension (2026-09-17)
+# v1.2 APPENDIX — craft-depth extension (2026-09-17)
 
 ## Empirical (E)
-U2-ITTI-98 — Itti, Koch & Niebur (1998), *A Model of Saliency-Based Visual Attention for Rapid Scene Analysis*, IEEE TPAMI, DOI 10.1109/34.730558. **Scope (narrowed per v1.2 gate):** supports LAYOUT-10 [E] for LOW-LEVEL feature channels only (contrast, color intensity, orientation); does NOT support faces/gaze/scale/figure-ground tactics as empirical claims, nor comprehension, intended reading sequence, or communicative outcomes. Photographic attentional signals live in IMAGE-02 [H] via Itti + PIETERS-WEDEL-2004 as craft inference.
+ITTI-98 — Itti, Koch & Niebur (1998), *A Model of Saliency-Based Visual Attention for Rapid Scene Analysis*, IEEE TPAMI, DOI 10.1109/34.730558. **Scope (narrowed per v1.2 gate):** supports LAYOUT-10 [E] for LOW-LEVEL feature channels only (contrast, color intensity, orientation); does NOT support faces/gaze/scale/figure-ground tactics as empirical claims, nor comprehension, intended reading sequence, or communicative outcomes. Photographic attentional signals live in IMAGE-02 [H] via Itti + PIETERS-WEDEL-2004 as craft inference.
 
 ## Source dedup note (v1.2)
-The U2 themes' remaining sources were already in the ledger under existing IDs — reuse, not duplicates: RAYNER-98 (Reading & memory) covers the eye-movement/measure evidence for TYPE-03/04/11; HOLSANOVA-2006 (v1.1 appendix) covers PRINT-02; PIETERS-WEDEL-2004 (v1.1 appendix) covers IMAGE-01–03 and PRINT-01; MORKES-NIELSEN-97 (Reading & memory) covers the NN/g scanning lineage (practitioner-grade for hierarchy/scan observations). Curriculum-internal references ("theme source list", activities, exercises) are NOT stable provenance and are not cited by any v1.2 rule; NHS/Guardian case-study outcome claims remain ungraded (no verifiable primary source).
+The craft-depth extension's remaining sources were already in the ledger under existing IDs — reuse, not duplicates: RAYNER-98 (Reading & memory) covers the eye-movement/measure evidence for TYPE-03/04/11; HOLSANOVA-2006 (v1.1 appendix) covers PRINT-02; PIETERS-WEDEL-2004 (v1.1 appendix) covers IMAGE-01–03 and PRINT-01; MORKES-NIELSEN-97 (Reading & memory) covers the NN/g scanning lineage (practitioner-grade for hierarchy/scan observations). Course-internal references (activity lists, exercises) are NOT stable provenance and are not cited by any v1.2 rule; NHS/Guardian case-study outcome claims remain ungraded (no verifiable primary source).
 
 Ledger version: **v1.2 (2026-09-17)**. Next annual review: 2027-08-31.

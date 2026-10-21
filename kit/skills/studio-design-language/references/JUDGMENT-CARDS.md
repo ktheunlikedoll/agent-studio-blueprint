@@ -31,7 +31,7 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
 - **GOV-01 — Tschichold’s recantation: doctrine must remain revisable** — [complete] Use when a rule is being treated as universally correct because it once produced consistency.
 - **GOV-02 — Penguin governance, not Penguin aesthetic** — [complete] Use when a common production protocol is confused with a common look.
 - **GOV-03 — Exception records as institutional memory** — [complete] Use when repeated deviations are undocumented or cannot be evaluated later.
-- **GOV-04 — Source confidence and scope discipline** — [complete] Use when curriculum rhetoric is about to acquire doctrine-level authority.
+- **GOV-04 — Source confidence and scope discipline** — [complete] Use when secondhand rhetoric is about to acquire doctrine-level authority.
 
 ### Cultural branding/semiotics + responsible borrowing
 - **CULT-01 — Myth, contradiction, and situated identity** — [complete] Use when an identity system promises cultural meaning beyond the product and risks naturalizing a selective story.
@@ -70,7 +70,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; University of Bristol Archives, “Penguin Composition Rules,” https://archives.bristol.ac.uk/Record.aspx?id=DM1294%2F16%2F4%2F2&src=CalmView.Catalog; Type Directors Club, Tschichold’s 1959 “Quousque Tandem…” transcription, https://tdc.org/news/jan-tschichold-the-tdc-and-a-mystery/.
    **Confidence:** High for the documented Penguin coordination history and Tschichold’s self-critique; medium for transferring those precedents to a new project.
    **Scope limit:** Precedent-informed diagnosis only; it does not predict audience outcomes or authorize a departure.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Think About 1–3; Active Learning 6–8, 10–12; Penguin case. Theme 1.3 — Think About 2–3; Active Learning 5–8, 11–12.
 
 ### POST-01 — Plurality without stylistic cosplay
 
@@ -89,7 +88,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Museum für Gestaltung Zürich, “Wolfgang Weingart: Typography in Context,” https://museum-gestaltung.ch/en/article/wolfgang-weingart-typography-context; Cranbrook Art Museum, Katherine McCoy recruitment poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/; Visible Language, “Deconstruction and Graphic Design: History Meets Theory,” https://journals.uc.edu/index.php/vl/article/view/5612; AIGA Eye on Design, David Carson interview, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/.
    **Confidence:** Medium-high for the documented practices and critical distinction between inquiry and style; medium for applying the lens to a new audience.
    **Scope limit:** Historical and critical framing only; it cannot establish that a difficult treatment is appropriate without current audience evidence.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Think About 1–3; Active Learning 2–5, 8–12.
 
 ### GOV-01 — Tschichold’s recantation: doctrine must remain revisable
 
@@ -108,7 +106,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Type Directors Club, Jan Tschichold’s “Quousque Tandem…” transcription, https://tdc.org/news/jan-tschichold-the-tdc-and-a-mystery/; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; University of Bristol Archives, “Penguin Composition Rules,” https://archives.bristol.ac.uk/Record.aspx?id=DM1294%2F16%2F4%2F2&src=CalmView.Catalog.
    **Confidence:** High for Tschichold’s documented self-critique and Penguin’s revised rules; high for the narrow governance boundary; not evidence of causal quality uplift.
    **Scope limit:** Governance prompt for eligible non-S rules only; it cannot override S floors, precedence, or the existing deviation protocol.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Active Learning 3–5, 10–12; Penguin case. Theme 1.3 — Think About 1–3; Active Learning 2, 7–11.
 
 ### CULT-01 — Myth, contradiction, and situated identity
 
@@ -127,7 +124,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Quelch and Jocz, Harvard Business School, “Holding a Mirror to Marketing,” https://www.hbs.edu/ris/Publication%20Files/HoldingMirror_Marketing_Quelch_Jocz_2008_aa83223f-1ece-4c37-a6f7-aaa3f9e7cf60.pdf; Schembri, “The Paradox of a Legend,” *Journal of Management & Organization*, https://doi.org/10.5172/jmo.837.14.4.386; Coca-Cola Company, “Open Happiness,” https://investors.coca-colacompany.com/news-events/press-releases/detail/328/open-happiness-and-enjoy-life’s-simple-pleasures-with-coca-cola; Harley-Davidson Museum, “Early Years,” https://www.harley-davidson.com/us/en/experiences/museum/archives/historicstories/earlyyears.html.
    **Confidence:** Medium for the bounded case descriptions; low-to-medium for any inferred cultural effect; no causal sales, reach, or universal-resonance claim is made here.
    **Scope limit:** A situated branding diagnostic only; it cannot settle cultural authority, representational ethics, or affected-community meaning without direct, appropriate input.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.4 — Think About 1–12; Active Learning 1–3, 5–9.
 
 ### CONFLICT-01 — Novelty versus legibility
 
@@ -146,7 +142,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** AIGA Eye on Design, David Carson interview and *Ray Gun* documentation, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/; Museum für Gestaltung Zürich, “Wolfgang Weingart: Typography in Context,” https://museum-gestaltung.ch/en/article/wolfgang-weingart-typography-context; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books.
    **Confidence:** High for the documented precedent descriptions; medium for applying their tension to a new audience and medium.
    **Scope limit:** A decision test, not a universal legibility formula or permission to reduce access.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Think About 2–3; Active Learning 4–5, 9. Theme 1.1 — Think About 2; Active Learning 2–5. Theme 1.3 — Active Learning 7, 11.
 
 ### CRIT-01 — Problem, constraint, outcome: read the precedent
 
@@ -165,7 +160,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Type Directors Club, Jan Tschichold’s “Quousque Tandem…” transcription, https://tdc.org/news/jan-tschichold-the-tdc-and-a-mystery/; Quelch and Jocz, Harvard Business School, “Holding a Mirror to Marketing,” https://www.hbs.edu/ris/Publication%20Files/HoldingMirror_Marketing_Quelch_Jocz_2008_aa83223f-1ece-4c37-a6f7-aaa3f9e7cf60.pdf; AIGA Eye on Design, David Carson interview, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/.
    **Confidence:** High for the source-recording discipline; medium for each precedent’s bounded historical interpretation.
    **Scope limit:** Analytical discipline, not a claim that every precedent has a measurable outcome or that precedent analysis replaces current evidence.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Active Learning 6–12; Penguin case. Theme 1.2 — Active Learning 3–5, 8–12; *Ray Gun* case. Theme 1.4 — Active Learning 1–12; Dove case. Theme 1.3 — Active Learning 5–12.
 
 ## Remaining cards
 
@@ -186,7 +180,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Jock Kinneir and Margaret Calvert,” https://designmuseum.org/designers/jock-kinneir-and-margaret-calvert; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Design Museum, “Google Noto,” https://designmuseum.org/exhibitions/beazley-designs-of-the-year/digital-20x/google-noto.
    **Confidence:** High for the described cases; medium for transfer to a new reader group.
    **Scope limit:** A reader-situating prompt, not a usability standard or universal theory of function.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Think About 1–3; Theme 1.3 — Think About 2–5; Theme 1.4 — Think About 1–4.
 
 ### MOV-03 — Modernist transparency versus expressive voice
 
@@ -205,7 +198,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Jock Kinneir and Margaret Calvert,” https://designmuseum.org/designers/jock-kinneir-and-margaret-calvert; Design Museum, “Wim Crouwel,” https://designmuseum.org/designers/wim-crouwel; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/; AIGA, David Carson interview, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/.
    **Confidence:** High for source descriptions; medium for the proposed allocation test.
    **Scope limit:** A layer-allocation diagnostic, not a claim that one hierarchy works for every audience.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Think About 1–5, 8–12; Theme 1.1 — Active Learning 2–5.
 
 ### MOV-04 — Historical inheritance across scripts
 
@@ -224,7 +216,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Google Noto,” https://designmuseum.org/exhibitions/beazley-designs-of-the-year/digital-20x/google-noto; Design Museum, “Amorepacific architectural branding,” https://designmuseum.org/exhibitions/beazley-designs-of-the-year/graphic-2019/amorepacific-architectural-branding; British Museum, “Rosetta Stone,” https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone; British Museum, “Written in stone: Libyco-Berber scripts,” https://africanrockart.britishmuseum.org/thematic/written-in-stone/.
    **Confidence:** High for documented source conditions; medium for transfer; low for any community-specific interpretation without local authority.
    **Scope limit:** A research-and-escalation prompt, never a script or cultural decision rule.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Think About 2–3; Theme 1.4 — Think About 1–6.
 
 ### POST-02 — Constraint as an engine of experimentation
 
@@ -243,7 +234,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Wim Crouwel,” https://designmuseum.org/designers/wim-crouwel; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/.
    **Confidence:** Medium-high for precedent descriptions; medium for applying the constraint test.
    **Scope limit:** A process diagnostic, not a recommendation to introduce artificial limitations.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Active Learning 2–5, 8–12; Theme 1.3 — Active Learning 5–8.
 
 ### POST-03 — Anti-legibility as situated communication
 
@@ -262,7 +252,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/; Design Museum, “Wim Crouwel,” https://designmuseum.org/designers/wim-crouwel; AIGA, David Carson interview, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/.
    **Confidence:** High for the documented artifacts; medium for the transfer test.
    **Scope limit:** Situated communication diagnosis only; not a license for inaccessible output.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Think About 1–5; Theme 1.3 — Active Learning 7–12.
 
 ### POST-04 — Authorship, quotation, and pastiche
 
@@ -281,7 +270,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/.
    **Confidence:** High for the Penguin and Cranbrook descriptions; medium for the ethical transfer test.
    **Scope limit:** Quotation diagnostic, not a copyright or cultural-approval determination.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Active Learning 3–5, 8–12; Theme 1.4 — Active Learning 1–6.
 
 ### GOV-02 — Penguin governance, not Penguin aesthetic
 
@@ -300,7 +288,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; NN/G, “Design-System Maturity,” https://www.nngroup.com/articles/design-system-maturity/; NN/G, “Consistency and Standards,” https://www.nngroup.com/articles/consistency-and-standards/.
    **Confidence:** High for source descriptions; medium for applying them to a local system.
    **Scope limit:** Governance diagnostic, not a prescribed operating model.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Penguin case; Theme 1.3 — Active Learning 5–12.
 
 ### GOV-03 — Exception records as institutional memory
 
@@ -319,13 +306,12 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; NN/G, “Design-System Maturity,” https://www.nngroup.com/articles/design-system-maturity/; NN/G, “Consistency and Standards,” https://www.nngroup.com/articles/consistency-and-standards/.
    **Confidence:** High for the governance practices and bounded cases; medium for the proposed record format.
    **Scope limit:** Memory and review prompt, not proof that any exception is warranted.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Active Learning 3–5, 10–12; Theme 1.3 — Active Learning 7–12.
 
 ### GOV-04 — Source confidence and scope discipline
 
 **Family / evidence tag:** Governance · H
 
-1. **Named trigger / tension:** Curriculum language, a famous case, or a critical term is about to acquire doctrine-level authority without a source, scope, or uncertainty statement.
+1. **Named trigger / tension:** Teaching language, a famous case, or a critical term is about to acquire doctrine-level authority without a source, scope, or uncertainty statement.
 2. **Diagnostic question:** What exactly is observed, where was it observed, what is inferred, and what evidence would falsify the proposed transfer?
 3. **Conditional lens statement:** If source, claim, scope, confidence, and validation are separated, a lens can inform judgment without becoming folklore; if rhetoric is compressed into a rule, uncertainty is hidden as authority.
 4. **Precedents as problem / constraint / outcome:** NN/G’s maturity framework rejects a single linear story and treats system health as multidimensional / different organizational scales and change conditions / a diagnostic profile rather than a universal ladder. The Design Museum’s Penguin history distinguishes documented design changes from broader claims about success / mass-market production and successive art directors / a traceable but evolving system. The British Museum’s Libyco-Berber account explicitly records disputed terminology and chronology / incomplete inscriptions / bounded knowledge rather than false certainty.
@@ -333,12 +319,11 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
 6. **Applicability boundary:** Applies to all judgment cards, especially cultural, historical, and claims about outcomes. It cannot replace peer review, community authority, accessibility evidence, or project validation.
 7. **Prohibited inference:** Do not infer that an established institution’s source proves a universal principle, or that high confidence in historical facts means high confidence in contemporary transfer.
 8. **S/E/H/T interaction clause:** H is the only tag here and supplies no new rank. Existing S/E/H/T precedence remains unchanged; uncertainty cannot be used to relax a floor.
-9. **Action:** For each claim, record source type, exact observation, inference, scope limit, confidence, falsifier, and curriculum provenance separately.
+9. **Action:** For each claim, record source type, exact observation, inference, scope limit, confidence, and falsifier separately.
    **Validation:** Peer-review the card against its links; remove unsupported outcome language and downgrade confidence where transfer is not demonstrated.
    **Evidence sources:** NN/G, “Design-System Maturity,” https://www.nngroup.com/articles/design-system-maturity/; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; British Museum, “Written in stone: Libyco-Berber scripts,” https://africanrockart.britishmuseum.org/thematic/written-in-stone/.
    **Confidence:** High for the source-discipline method; medium for applying any individual precedent.
    **Scope limit:** Metadata and audit prompt, not a substitute for evidence.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.3 — Think About 1–3; Active Learning 5–12; Theme 1.1 — Active Learning 10–12.
 
 ### CULT-02 — Exchange, appropriation, and authority to judge
 
@@ -357,7 +342,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Westberg, “Establishing authenticity and commodifying difference,” *Visual Communication*, https://doi.org/10.1177/1470357219896819; Lin et al., “Between Cultural Appreciation and Cultural Appropriation,” *Journal of Consumer Research*, https://doi.org/10.1093/jcr/ucad022.
    **Confidence:** High for the bounded findings of these peer-reviewed studies; low for any project-specific cultural judgment without situated authority.
    **Scope limit:** Escalation prompt only; no universal appropriation test and no community meaning inferred.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.4 — Think About 1–12; Active Learning 5–12.
 
 ### CULT-03 — Global myth, local contradiction
 
@@ -376,7 +360,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Coca-Cola, “Open Happiness,” https://investors.coca-colacompany.com/news-events/press-releases/detail/328/open-happiness-and-enjoy-life’s-simple-pleasures-with-coca-cola; “Exploring authenticity meanings in the global-local continuum,” *International Marketing Review*, https://doi.org/10.1108/imr-10-2023-0274; Westberg, “Establishing authenticity and commodifying difference,” https://doi.org/10.1177/1470357219896819.
    **Confidence:** Medium for the documented case analyses; low for transfer to any new market without local evidence.
    **Scope limit:** Cross-market research prompt, never a glocalization recipe.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.4 — Think About 1–12; Active Learning 1–9.
 
 ### CULT-04 — Subcultural codes after commodification
 
@@ -395,7 +378,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Westberg, “Establishing authenticity and commodifying difference,” https://doi.org/10.1177/1470357219896819; Lin et al., “Between Cultural Appreciation and Cultural Appropriation,” https://doi.org/10.1093/jcr/ucad022; “Semiotic Perspectives on Cultural Appropriation in the Music Industry,” https://doi.org/10.56078/motifs.1083.
    **Confidence:** High for the narrowly stated scholarly findings; low for any new community-specific judgment.
    **Scope limit:** Escalation and removal prompt, never a responsible-borrowing verdict.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.4 — Think About 1–12; Active Learning 5–12.
 
 ### CONFLICT-02 — System consistency versus concept specificity
 
@@ -414,7 +396,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; NN/G, “Consistency and Standards,” https://www.nngroup.com/articles/consistency-and-standards/; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/.
    **Confidence:** High for source cases; medium for transfer to a local system.
    **Scope limit:** Trade-off diagnostic, not a license for novelty or a system rule.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Penguin case; Theme 1.3 — Active Learning 5–12.
 
 ### CONFLICT-03 — Expressive voice versus editorial responsibility
 
@@ -433,7 +414,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** AIGA, David Carson interview, https://eyeondesign.aiga.org/anti-grid-icon-david-carson-on-why-computers-make-you-lazy-and-indie-mag-design-needs-to-liven-up/; Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/.
    **Confidence:** High for precedent descriptions; medium for the editorial validation procedure.
    **Scope limit:** Accountability prompt, not an editorial-style prescription.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.2 — Active Learning 3–5, 8–12; Theme 1.3 — Active Learning 7–12.
 
 ### CONFLICT-04 — Historical fidelity versus contemporary relevance
 
@@ -452,7 +432,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/.
    **Confidence:** High for documented design histories; medium for contemporary relevance transfer.
    **Scope limit:** Historical interpretation prompt, not an authenticity guarantee.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Penguin case; Theme 1.2 — Active Learning 3–5; Theme 1.4 — Active Learning 1–6.
 
 ### CRIT-02 — Whose “good design” is being universalized?
 
@@ -471,7 +450,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Jock Kinneir and Margaret Calvert,” https://designmuseum.org/designers/jock-kinneir-and-margaret-calvert; Design Museum, “Google Noto,” https://designmuseum.org/exhibitions/beazley-designs-of-the-year/digital-20x/google-noto; British Museum, “Written in stone: Libyco-Berber scripts,” https://africanrockart.britishmuseum.org/thematic/written-in-stone/; NN/G, “Consistency and Standards,” https://www.nngroup.com/articles/consistency-and-standards/.
    **Confidence:** High for source facts; medium for the critique procedure.
    **Scope limit:** Situated-critique prompt, not a claim that all judgments are equally supported.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.3 — Think About 1–3; Theme 1.4 — Think About 1–12.
 
 ### CRIT-03 — Rationale or retrospective decoration?
 
@@ -490,7 +468,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Cranbrook Art Museum, Katherine McCoy poster, https://cranbrookartmuseum.org/artwork/katherine-mccoy-posters-the-graduate-program-in-design/; NN/G, “Design-System Maturity,” https://www.nngroup.com/articles/design-system-maturity/.
    **Confidence:** High for source descriptions; medium for the operational critique method.
    **Scope limit:** Rationale audit, not a requirement for stylistic explanation.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Active Learning 6–12; Theme 1.2 — Active Learning 8–12; Theme 1.3 — Active Learning 5–12.
 
 ### CRIT-04 — Counterexample before confidence
 
@@ -509,7 +486,6 @@ This appendix is non-normative decision support. It cannot set tokens, mandate a
    **Evidence sources:** Design Museum, “Penguin Books,” https://designmuseum.org/penguin-books; Type Directors Club, Tschichold’s “Quousque Tandem…” transcription, https://tdc.org/news/jan-tschichold-the-tdc-and-a-mystery/; NN/G, “Design-System Maturity,” https://www.nngroup.com/articles/design-system-maturity/.
    **Confidence:** High for the cited counterexample discipline; medium for transfer to an individual project.
    **Scope limit:** Confidence calibration prompt, not a statistical method or proof of causality.
-   **Curriculum provenance (PROVENANCE, not evidence):** Theme 1.1 — Active Learning 3–5, 10–12; Theme 1.3 — Think About 1–3; Theme 1.2 — Active Learning 8–12.
 
 ## Deferred cards
 

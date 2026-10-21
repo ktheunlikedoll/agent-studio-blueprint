@@ -37,7 +37,7 @@ policy intent only — this file is the only per-agent model mapping doc.
 
 """
 
-DEPT_ORDER = {"engine": 0, "studio": 1, "learnforge": 2, "packforge": 3, "youtube": 4, "builtin": 5}
+DEPT_ORDER = {"engine": 0, "studio": 1, "finance": 2, "builtin": 3}
 
 
 def parse_frontmatter(path):

@@ -56,9 +56,7 @@ paragraph indents/spacing, unsupported font selectors, grey/Lab/32-bit pixels, *
 without the document profile**, Affinity-only blend modes (→Normal). Unreadable files open as their
 embedded PNG preview with the reason.
 
-**Affinity is retired from the studio** (2026-10-15; the WinBoat VM that hosted it was removed in
-totality). Never plan work that requires writing, editing or round-tripping .af files — the suite is
-the destination, not a middleman.
+**Affinity is retired from the studio toolchain.** Never plan work that requires writing, editing or round-tripping .af files — the suite is the destination, not a middleman.
 
 ## Verification gates (non-negotiable for client deliverables)
 

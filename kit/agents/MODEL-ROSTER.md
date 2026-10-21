@@ -13,11 +13,9 @@ policy intent only — this file is the only per-agent model mapping doc.
 
 | Agent | Dept | Model | Thinking |
 |---|---|---|---|
-| `earner` | engine | `z-ai/glm-5.3-flash` | high |
 | `git-committer` | engine | `openrouter/qwen/qwen3-coder-next` | off |
 | `minion` | engine | `openrouter/openai/gpt-5.6-luna` | high |
 | `planner` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
-| `portfolio-sweep` | engine | `z-ai/glm-5.3-flash` | high |
 | `reviser` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
 | `art-director` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
 | `critic` | studio | `openrouter/openai/gpt-6-luna` | high |
@@ -31,38 +29,7 @@ policy intent only — this file is the only per-agent model mapping doc.
 | `strategist` | studio | `openrouter/anthropic/claude-sonnet-5` | high |
 | `tech-director` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
 | `ui-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
-| `assessment-assembler` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `assessment-generator` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `case-researcher` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `content-generator` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `director` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `glossary-assembler` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `glossary-generator` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `module-reviewer` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `objective-generator` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `pre-post-reading` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `purpose-refiner` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `query-generator` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `researcher` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `session-planner` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `student-quiz-strip` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `theme-extractor` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `unit-extractor` | learnforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `builder` | packforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `handbook-assembler` | packforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `notebooklm-writer` | packforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `presentation-writer` | packforge | `openrouter/z-ai/glm-5.3-flash` | max |
-| `channel-analyst` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `desk-renderer` | youtube | `openrouter/openai/gpt-5.6-luna` | high |
-| `director` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `episode-writer` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `publisher` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `seo-metadata` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `shorts-adapter` | youtube | `openrouter/openai/gpt-5.6-luna` | high |
-| `thumbnail-designer` | youtube | `openrouter/openai/gpt-5.6-luna` | high |
-| `vo-producer` | youtube | `openrouter/z-ai/glm-5.3-flash` | max |
-| `oracle (builtin)` | builtin | `openrouter/openai/gpt-5.6-terra` | xhigh |
-| `reviewer (builtin)` | builtin | `openrouter/openai/gpt-5.6-luna` | high |
 | `bookkeeper` | finance | `openrouter/z-ai/glm-5.3-flash` | max |
 | `director` | finance | `openrouter/z-ai/glm-5.3-flash` | max |
-| `tax-steward` | finance | `openrouter/z-ai/glm-5.3-flash` | max |
+| `oracle (builtin)` | builtin | `openrouter/openai/gpt-5.6-terra` | xhigh |
+| `reviewer (builtin)` | builtin | `openrouter/openai/gpt-5.6-luna` | high |

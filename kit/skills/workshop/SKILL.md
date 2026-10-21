@@ -37,9 +37,9 @@ State your read of the ask back in one paragraph: goal, apparent domain, open am
 | `studio.strategist` | Creative/strategic development | Design-bearing asks: what the thing should BE. Two-phase (3 territories → user gate → converge) when real creative choices exist; single-phase for direct strategy asks within its design scope |
 | `planner` | Structural development | Scope, sequencing, cost, risks, what breaks. Returns open decisions as concrete questions for the user |
 
-- **Strategist stays design-scoped.** Architecture, engine, and curriculum-strategy workshops run on `planner` + `oracle`; strategist joins when the workshop has a design-bearing axis.
-- **Research exception:** `studio.researcher` (technical mode) and `youtube.channel-analyst` (market mode) are the only non-advisory agents allowed in a workshop; they run in research mode producing briefs only, and their briefs are attached to the dossier. No other workers, ever.
-- **Online research is MANDATORY (user-set standing policy, 2026-08-31):** every workshop commissions at least one online research brief — `studio.researcher` technical mode by default; add `youtube.channel-analyst` market mode when a channel/market axis exists — BEFORE advisory pressure-testing or convergence. No workshop converges on opinion alone; the evidence brief is a convergence gate. The only skip is an explicit user waiver, logged in the dossier.
+- **Strategist stays design-scoped.** Architecture and engine workshops run on `planner` + `oracle`; strategist joins when the workshop has a design-bearing axis.
+- **Research exception:** `studio.researcher` (technical mode) is the only non-advisory agent allowed in a workshop; it runs in research mode producing briefs only, and its briefs are attached to the dossier. No other workers, ever.
+- **Online research is MANDATORY (user-set standing policy, 2026-08-31):** every workshop commissions at least one online research brief — `studio.researcher` technical mode — BEFORE advisory pressure-testing or convergence. No workshop converges on opinion alone; the evidence brief is a convergence gate. The only skip is an explicit user waiver, logged in the dossier.
 - Relay agent questions for the user verbatim. Don't flatten three agent voices into mush — attribute.
 
 ## 3. Iterate

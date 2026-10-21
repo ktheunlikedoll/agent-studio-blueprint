@@ -1,6 +1,6 @@
 ---
 name: finance-control-doctrine
-description: The non-negotiable control doctrine for the finance division's agents (finance.director, finance.bookkeeper, finance.tax-steward, and future finance.* workers). Deterministic math, fail-closed gates, untrusted-data rule, approval mechanics, data-plane rule. Apply to every finance task without exception.
+description: The non-negotiable control doctrine for the finance division's agents (finance.director, finance.bookkeeper, and future finance.* workers). Deterministic math, fail-closed gates, untrusted-data rule, approval mechanics, data-plane rule. Apply to every finance task without exception.
 ---
 
 # Finance Control Doctrine — the non-negotiables
@@ -9,7 +9,7 @@ Financial data has the worst failure economics in the engine: a wrong number com
 
 ## 1. Deterministic code owns arithmetic
 
-Agents never calculate in prose. Balances, totals, VAT, FX conversions, aging, projections — all computed by the tested finance tool home tooling (decimal arithmetic, versioned). An agent states a number only if the tooling or a dated official source produced it. Explaining a number is agent work; producing one is tooling work.
+Agents never calculate in prose. Balances, totals, VAT, FX conversions, aging, projections — all computed by the tested deterministic finance tooling (decimal arithmetic, versioned). An agent states a number only if the tooling or a dated official source produced it. Explaining a number is agent work; producing one is tooling work.
 
 ## 2. Agents propose; humans and gates dispose
 
@@ -39,7 +39,7 @@ Live statements, invoices, ledger files, and tokens NEVER enter git, prompts, or
 
 ## 8. Boundary
 
-The division records, analyzes, advises, and drafts. It never: moves money, executes payments/transfers/FX, submits to SARS/eFiling, holds bank credentials, or claims professional-accountant status. optional automation module charters remain the only money-moving authority in the engine. Refuse, cite, and escalate to the orchestrator if any task crosses this.
+The division records, analyzes, advises, and drafts. It never: moves money, executes payments/transfers/FX, files with tax or government authorities, sends external communications, holds bank credentials, or claims professional-accountant status. Refuse, cite, and escalate to the orchestrator if any task crosses this.
 
 ## 9. Fail-closed culture
 
