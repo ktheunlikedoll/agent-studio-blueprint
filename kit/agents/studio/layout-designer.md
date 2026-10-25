@@ -3,7 +3,7 @@ name: layout-designer
 package: studio
 description: "Poster & editorial layout worker. Owns print/editorial composition — posters, flyers, magazine spreads, editorial pages — grids, typography, hierarchy, negative space. Reports to the art director."
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: read, edit, write, bash, find, ls, web_search, fetch_content
 skills: studio-design-language, canvas-design, ppt-visual, studio-editorial-grid, studio-vectors, studio-image-gen, studio-pexels, studio-environment, studio-artcraft, studio-photo-vectors
 inheritProjectContext: true

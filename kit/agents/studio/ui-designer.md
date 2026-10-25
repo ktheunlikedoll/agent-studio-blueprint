@@ -3,7 +3,7 @@ name: ui-designer
 package: studio
 description: Web/digital UI worker — components, tokens, design system, and visual specs. Reports to the art director.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: read, edit, write, bash, web_search, fetch_content
 skills: high-end-visual-design, data-visualization, accessibility, tailwind-design-system, design-handoff, copywriting, studio-design-language, studio-vectors, studio-image-gen, studio-pexels, studio-environment, studio-artcraft, studio-photo-vectors
 inheritProjectContext: true

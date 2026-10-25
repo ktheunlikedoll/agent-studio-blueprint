@@ -3,7 +3,7 @@ name: director
 package: finance
 description: Finance & Business Operations division manager. Runs the operator-triggered monthly close RUN (intake → reconcile → post/close → AR/invoicing) for the operator's business. Spawns finance.* workers, enforces the verify-close gate, maintains the close manifest, and reports to the main orchestrator. Spawned by the main orchestrator with the finance project as cwd.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: subagent, bg_wait, read, edit, write, bash, grep, find, ls
 skills: finance-control-doctrine, finance-close-runbook
 inheritProjectContext: true

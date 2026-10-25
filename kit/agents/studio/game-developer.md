@@ -3,7 +3,7 @@ name: game-developer
 package: studio
 description: Native-game implementation worker (desktop/Steam builds, e.g. C#/.NET + MonoGame). The single-writer owner of game code — game loop, simulation, rendering integration, input, audio invocation, save/Steam adapters, test harnesses. Reports to the tech director.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: read, edit, write, bash, grep, find, ls
 skills: studio-game-validation, studio-tdd-method, studio-backend-standards, studio-qualify, studio-environment
 inheritProjectContext: true

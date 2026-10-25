@@ -3,7 +3,7 @@ name: bookkeeper
 package: finance
 description: Finance division worker — statement intake reporting, transaction classification proposals, exception queues, variance explanations. Proposes only; NEVER posts to the ledger. Spawned by finance.director.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: read, write, bash, grep, find, ls
 skills: finance-control-doctrine, finance-close-runbook
 inheritProjectContext: true

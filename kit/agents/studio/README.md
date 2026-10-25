@@ -43,7 +43,7 @@ Other engine-level agents (`reviser`, `planner`, and the `finance` division) are
 5. **Concept gate:** Pi presents the territories to the user; the user picks (or delegates with a recorded default); the selection is recorded in `.studio/`. For brand/poster/campaign briefs, `studio.generative-designer` Mode A may be commissioned to make territories tangible before selection.
 6. **Converge:** Pi spawns `studio.strategist` again with the chosen territory — Phase 2 — producing the heavily detailed master plan + creative direction (→ `.studio/STRATEGY.md`, with the §2 Concept at the top).
 7. **Project-start decision check:** Pi forks to `oracle` (GPT-5.6 Terra, multimodal) to challenge the plan — scope/domain-split/architecture direction AND visual/creative claims, including the taste axis (which real products would this be confused with?).
-8. Pi reconciles oracle's challenges into the plan (GLM-5.3-Flash, max reasoning — cheap at ~$0.075/$0.25 per M). Phase-2 strategist re-run only if the user rejects the direction or oracle finds a fundamental flaw; Pi decides if that spend is worth it.
+8. Pi reconciles oracle's challenges into the plan (GLM-5.3-Flash, high reasoning — cheap at ~$0.075/$0.25 per M). Phase-2 strategist re-run only if the user rejects the direction or oracle finds a fundamental flaw; Pi decides if that spend is worth it.
 9. Pi hands execution to `studio.tech-director` and/or `studio.art-director` with the reconciled plan as a full meta-prompt (concept verbatim at the top).
 10. The manager plans acutely and drives its workers (via the `subagent` tool).
 11. Workers do the heavy lifting; the manager synthesizes. The art-director runs the 2-cycle visual-QA loop with `studio.critic` (10-check lens incl. the confusion test).

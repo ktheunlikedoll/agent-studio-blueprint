@@ -17,19 +17,19 @@ policy intent only — this file is the only per-agent model mapping doc.
 | `minion` | engine | `openrouter/openai/gpt-5.6-luna` | high |
 | `planner` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
 | `reviser` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
-| `art-director` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
+| `art-director` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
 | `critic` | studio | `openrouter/openai/gpt-6-luna` | high |
-| `developer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
-| `game-developer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
+| `developer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `game-developer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
 | `generative-designer` | studio | `openrouter/openai/gpt-6-luna` | high |
-| `layout-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
-| `motion-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
+| `layout-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `motion-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
 | `researcher` | studio | `openrouter/openai/gpt-6-luna` | high |
 | `scout` | studio | `openrouter/z-ai/glm-5.3-flash` | medium |
 | `strategist` | studio | `openrouter/anthropic/claude-sonnet-5` | high |
-| `tech-director` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
-| `ui-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | max |
-| `bookkeeper` | finance | `openrouter/z-ai/glm-5.3-flash` | max |
-| `director` | finance | `openrouter/z-ai/glm-5.3-flash` | max |
-| `oracle (builtin)` | builtin | `openrouter/openai/gpt-5.6-terra` | xhigh |
+| `tech-director` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `ui-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `bookkeeper` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
+| `director` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
+| `oracle (builtin)` | builtin | `openrouter/openai/gpt-5.6-terra` | high |
 | `reviewer (builtin)` | builtin | `openrouter/openai/gpt-5.6-luna` | high |

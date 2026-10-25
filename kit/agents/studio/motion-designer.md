@@ -3,7 +3,7 @@ name: motion-designer
 package: studio
 description: HyperFrames video worker. Authors HTML/CSS compositions and renders deterministic MP4 video via HyperFrames. Reports to the art director.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: read, edit, write, bash, find, ls, web_search, fetch_content
 skills: hyperframes, design-motion-principles, studio-design-language, studio-vectors, studio-image-gen, studio-pexels, studio-environment, studio-artcraft, remotion-best-practices, remotion-create, remotion-markup, remotion-render, studio-photo-vectors
 inheritProjectContext: true

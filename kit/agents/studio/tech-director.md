@@ -3,7 +3,7 @@ name: tech-director
 package: studio
 description: Backend + general-programming manager. Plans execution acutely and drives the developer/researcher/scout workers to implement it. Spawned by the orchestrator.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: subagent, bg_wait, read, edit, write, bash, grep, find, ls
 skills: studio-grill, studio-task-decomposition, studio-environment
 inheritProjectContext: true

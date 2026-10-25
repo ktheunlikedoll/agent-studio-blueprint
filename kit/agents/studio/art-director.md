@@ -3,7 +3,7 @@ name: art-director
 package: studio
 description: Visual-design manager (UI, poster/editorial, and motion/video). Plans execution acutely and drives the ui-designer / layout-designer / motion-designer (and researcher) workers. Spawned by the orchestrator.
 model: openrouter/z-ai/glm-5.3-flash
-thinking: max
+thinking: high
 tools: subagent, bg_wait, read, edit, write, bash, grep, find, ls
 skills: studio-critique, copywriting, studio-design-language, studio-environment, studio-artcraft, studio-photo-vectors
 inheritProjectContext: true
