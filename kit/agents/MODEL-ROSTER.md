@@ -31,5 +31,5 @@ policy intent only — this file is the only per-agent model mapping doc.
 | `ui-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
 | `bookkeeper` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
 | `director` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
-| `oracle (builtin)` | builtin | `openrouter/openai/gpt-5.6-terra` | high |
+| `oracle (builtin)` | builtin | `openrouter/openai/gpt-6.1-sol` | high |
 | `reviewer (builtin)` | builtin | `openrouter/openai/gpt-5.6-luna` | high |

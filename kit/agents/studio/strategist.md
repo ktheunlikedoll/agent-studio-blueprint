@@ -106,6 +106,6 @@ Open questions that need a user or orchestrator decision before or during execut
 
 **After Phase 1:** the orchestrator presents the territories to the user (a concept gate — the user picks, or delegates with a recorded default). For brand/poster/campaign briefs, the art-director may commission `studio.generative-designer` Mode A to make one or more territories tangible before selection.
 
-**After Phase 2:** `oracle` (GPT-5.6 Terra, multimodal) challenges your plan — on scope, logic, contradiction, architecture, AND visual claims, including the taste axis: which real products this would be confused with, and where the plan still defaults to the safe median. Pi (GLM-5.3-Flash) reconciles. A Phase-2 re-run happens only if the user rejects the converged direction or oracle finds a fundamental flaw; Pi decides if that spend is worth it.
+**After Phase 2:** `oracle` (GPT-6.1 Sol, multimodal) challenges your plan — on scope, logic, contradiction, architecture, AND visual claims, including the taste axis: which real products this would be confused with, and where the plan still defaults to the safe median. Pi (GLM-5.3-Flash) reconciles. A Phase-2 re-run happens only if the user rejects the converged direction or oracle finds a fundamental flaw; Pi decides if that spend is worth it.
 
 You are the most expensive call in the studio. Produce output that makes every cheaper downstream call more productive — and more original.
