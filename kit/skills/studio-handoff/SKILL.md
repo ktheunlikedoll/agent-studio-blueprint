@@ -88,7 +88,7 @@ Based on the loop position in STATE.md, determine the single correct next step:
 |---|---|
 | Planning ○ | Start planning — run Step 1 (Plan) with the research + scout context from the handoff. |
 | Planning ✓, Applying ○ | Continue delegation — pick up where the manager/worker handoff left off. Re-read the task prompt and worker output. |
-| Applying ✓, Unifying ○ | Run UNIFY (Step 12) — reconcile plan vs. actual, write SUMMARY.md, update STATE.md. |
+| Applying ✓, Unifying ○ | Run UNIFY (after Review + report) — reconcile plan vs. actual, write SUMMARY.md, update STATE.md. |
 | All ✓ (Complete) | Start the next phase — run Step 1 (Plan) for the next phase of work. |
 | Blocked | Address the blocker — read the blocker description from STATE.md or the handoff, determine whether it's INTENT / SPEC / CODE, and route accordingly. |
 
@@ -129,7 +129,7 @@ This ensures that the next pause creates a fresh handoff, and the next resume lo
 
 ## How this fits with other skills
 
-- **`studio-unify`** — UNIFY (Step 12) writes the SUMMARY.md and STATE.md that the handoff procedure reads. The PAUSE procedure depends on STATE.md being current. If UNIFY was skipped, the handoff will have stale loop position.
+- **`studio-unify`** — UNIFY writes the SUMMARY.md and STATE.md that the handoff procedure reads. The PAUSE procedure depends on STATE.md being current. If UNIFY was skipped, the handoff will have stale loop position.
 - **`studio-qualify`** — worker statuses (DONE / DONE_WITH_CONCERNS / NEEDS_CONTEXT / BLOCKED) are captured in the handoff's "in progress" section so a resuming session knows what was mid-flight.
 - **`studio-task-decomposition`** — the AC-N numbered acceptance criteria are referenced in the handoff's key files table so a resuming session can re-read the plan.
 

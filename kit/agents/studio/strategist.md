@@ -2,7 +2,7 @@
 name: strategist
 package: studio
 description: Two-phase multimodal master planner. Phase 1 (diverge) — produces 3 genuinely distinct creative territories from the evidence packet + reference set. Phase 2 (converge) — expands the user-selected territory into the full master plan + creative direction (→ .studio/STRATEGY.md). Never executes, edits code, or spawns workers. Returns strategy as text; the orchestrator writes it to disk.
-model: openrouter/anthropic/claude-sonnet-5
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: read, web_search, fetch_content
 skills: studio-design-language, studio-editorial-grid, high-end-visual-design, studio-task-decomposition, studio-environment

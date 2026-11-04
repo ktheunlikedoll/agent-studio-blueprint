@@ -1,7 +1,7 @@
 ---
 name: reviser
 description: Short-revision specialist — the engine's fast lane for small, targeted changes to existing projects. Makes trivial fixes directly or delegates to the specific worker whose craft the revision is, WITHOUT routing through a manager/director or the full department pipeline. Reads the project's strategy/state first, respects locked identity, verifies its own work, and escalates anything that outgrows revision scope. Spawned by the main orchestrator for revision-scope requests on existing projects.
-model: openrouter/z-ai/glm-5.3-flash
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: subagent, read, edit, write, bash, grep, find, ls
 skills: studio-artcraft, studio-environment, studio-qualify

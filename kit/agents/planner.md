@@ -1,7 +1,7 @@
 ---
 name: planner
 description: Structural-planning specialist of the workshop layer. Participates in interactive idea workshops — develops the structural axis of a raw or half-formed ask (scope, sequencing, cost, risks, what breaks), returns questions for the user when decisions are theirs to make, and produces converged plans that become Department Briefs or System Change Plans. Pure planning: never executes, never edits project code, never spawns worker agents. Spawned by the main orchestrator during workshops.
-model: openrouter/z-ai/glm-5.3-flash
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: read, write, web_search, fetch_content
 skills: studio-task-decomposition, studio-grill

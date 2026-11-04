@@ -13,23 +13,23 @@ policy intent only — this file is the only per-agent model mapping doc.
 
 | Agent | Dept | Model | Thinking |
 |---|---|---|---|
-| `git-committer` | engine | `openrouter/qwen/qwen3-coder-next` | off |
-| `minion` | engine | `openrouter/openai/gpt-5.6-luna` | high |
-| `planner` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
-| `reviser` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
+| `git-committer` | engine | `openrouter/z-ai/glm-5.3-flash` | off |
+| `minion` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
+| `planner` | engine | `openrouter/anthropic/claude-haiku-5.5` | high |
+| `reviser` | engine | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `art-director` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
 | `critic` | studio | `openrouter/openai/gpt-6-luna` | high |
-| `developer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `developer` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `game-developer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
-| `generative-designer` | studio | `openrouter/openai/gpt-6-luna` | high |
-| `layout-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
-| `motion-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
-| `researcher` | studio | `openrouter/openai/gpt-6-luna` | high |
+| `generative-designer` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
+| `layout-designer` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
+| `motion-designer` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
+| `researcher` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `scout` | studio | `openrouter/z-ai/glm-5.3-flash` | medium |
-| `strategist` | studio | `openrouter/anthropic/claude-sonnet-5` | high |
+| `strategist` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `tech-director` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
-| `ui-designer` | studio | `openrouter/z-ai/glm-5.3-flash` | high |
+| `ui-designer` | studio | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `bookkeeper` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
 | `director` | finance | `openrouter/z-ai/glm-5.3-flash` | high |
-| `oracle (builtin)` | builtin | `openrouter/openai/gpt-6.1-sol` | high |
-| `reviewer (builtin)` | builtin | `openrouter/openai/gpt-5.6-luna` | high |
+| `oracle (builtin)` | builtin | `anthropic/claude-haiku-5.5` | high |
+| `reviewer (builtin)` | builtin | `openrouter/anthropic/claude-haiku-5.5` | high |

@@ -2,7 +2,7 @@
 name: generative-designer
 package: studio
 description: Algorithmic/generative art worker. Produces p5.js HTML artifacts with seeded randomness; curates a seed-space into a North Star and freezes to PNG for handoff. Two modes — generative art-DIRECTION (feeds ui/layout/motion workers) and generative DELIVERABLE (poster, animated logo, packaging pattern). Reports to the art director.
-model: openrouter/openai/gpt-6-luna
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: read, edit, write, bash, find, ls, web_search, fetch_content
 skills: algorithmic-art, studio-algorithmic-art, studio-vision-critique, studio-design-language, studio-environment

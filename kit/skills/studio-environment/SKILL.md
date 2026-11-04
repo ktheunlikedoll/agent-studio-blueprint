@@ -79,7 +79,7 @@ fit the px-authored canvas into the inch page:
 
 ### Reference implementation
 `studio-environment` ships no script, but a working reference lives in the
-JRM/Outpouring project at `src/render_pamphlet_vector.py` — Python Playwright
+a brochure project at `src/render_pamphlet_vector.py` — Python Playwright
 `page.pdf(scale=0.32)` → Ghostscript CMYK → magick 600dpi proofs. Read it if
 you need the exact shape.
 

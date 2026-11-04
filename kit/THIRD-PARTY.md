@@ -21,6 +21,7 @@ The starter kit bundles engine-authored orchestration files and skills. The item
 - `bin/pi` is supplied by the official Pi installation rather than this kit. Install Pi using the official command in `SETUP.md`.
 - `bin/fd` and `bin/rg` are platform binaries and are not redistributed. Install `fd` and `ripgrep` from your operating system package manager or their official releases.
 - `bin/studio-deploy` is a business-specific deployment runner and is not included. Use your own approved deployment mechanism.
+- Generic engine-authored ops tools ARE included: `bin/github-comment.py` (GitHub issue/PR engagement helper), `bin/site-maintenance.py` (deterministic, report-only site monitor — runtime state and site registry are yours to create), and `bin/studio-sanitize` (served-tree comment stripper used by the sanitation law in APPEND_SYSTEM.md policy #3).
 
 Verify upstream licenses before redistributing any excluded component or adding it to a derivative kit.
 

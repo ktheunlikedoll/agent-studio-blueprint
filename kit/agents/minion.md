@@ -1,7 +1,7 @@
 ---
 name: minion
 description: Heavy-lifting general-purpose subagent for the main pi agent. Offloads multi-step, research, file/system, and configuration work to keep the main agent's context lean. Has the same tools as the main agent; bash is guarded. Reports concise, decision-ready results. Spawned directly by the main agent for non-project work and heavy lifting.
-model: openrouter/openai/gpt-5.6-luna
+model: openrouter/z-ai/glm-5.3-flash
 thinking: high
 inheritProjectContext: false
 inheritSkills: true

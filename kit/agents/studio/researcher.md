@@ -2,7 +2,7 @@
 name: researcher
 package: studio
 description: Deep web research worker — two modes. Technical mode produces a focused, evidence-backed research brief. Design mode (art-domain briefs) produces the visual landscape packet — a cliché map of the genre plus 8–12 curated reference images downloaded to <project>/references/, each verified by reading it. Always the first step in a studio workflow.
-model: openrouter/openai/gpt-6-luna
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: web_search, fetch_content, get_search_content, read, write, bash
 skills: just-scrape, studio-research-method, watch-skill-video-evidence, studio-photo-vectors

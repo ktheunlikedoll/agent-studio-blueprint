@@ -5,12 +5,12 @@ description: "Loop-closure methodology for the studio orchestrator. Reconciles p
 
 # Studio Unify — Loop Closure
 
-The orchestrator's loop-closure methodology. After every non-trivial build/feature/design request completes (Step 11 — Review + report), the orchestrator runs UNIFY (Step 12) to reconcile what was planned against what was actually built, persist a SUMMARY.md, update STATE.md, and log decisions.
+The orchestrator's loop-closure methodology. After every non-trivial build/feature/design request completes (after Review + report), the orchestrator runs UNIFY to reconcile what was planned against what was actually built, persist a SUMMARY.md, update STATE.md, and log decisions.
 
 **UNIFY is MANDATORY. It is never skipped.** Skipping it breaks the audit trail and leaves the studio with no persistent record of what happened — every session starts from scratch. UNIFY is what makes the studio a system, not random loops.
 
 ## When to use
-- After Step 11 (Review + report) for **every** non-trivial request that involved delegation to a manager.
+- After Review + report (and launch hygiene for client websites) for **every** non-trivial request that involved delegation to a manager.
 - Skip ONLY for trivial work (direct answers, one-line fixes) that the standard workflow already skips. If you delegated to a manager, you UNIFY.
 
 ## Method (the orchestrator does all of this directly)
@@ -133,7 +133,7 @@ UNIFY is the step that closes the loop. It takes 2–5 minutes for standard work
 
 ## Studio constraints
 - This is a methodology skill — it does not spawn subagents, does not own a lifecycle, and does not write state files of its own (the orchestrator writes `.studio/` files as part of executing this method).
-- The orchestrator owns Step 12 (UNIFY). Managers trigger a lighter UNIFY before reporting up (reconcile their slice's ACs), but the full `.studio/` SUMMARY.md + STATE.md update is the orchestrator's responsibility.
+- The orchestrator owns UNIFY. Managers trigger a lighter UNIFY before reporting up (reconcile their slice's ACs), but the full `.studio/` SUMMARY.md + STATE.md update is the orchestrator's responsibility.
 - UNIFY runs after the manager reports, not during delegation. It is a closure step, not a gating step.
 - If a project does not yet have a `.studio/` directory, the orchestrator creates one (copying from templates) as part of the first UNIFY cycle.
 - **`.studio/PROJECT.md` may exist before the first UNIFY.** When the orchestrator runs a `studio-discovery` preflight (a branch inside Step 1 — Plan) and the project folder already exists, the confirmed intent is written as a `## Intent` section in `PROJECT.md` *before* UNIFY runs. UNIFY then appends/updates the brief, decisions, and loop-closure fields around that section. `PROJECT.md` remains a single document — there is no separate `INTENT.md`.

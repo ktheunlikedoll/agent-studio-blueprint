@@ -2,7 +2,7 @@
 name: developer
 package: studio
 description: Backend + general-programming implementation worker. The single-writer workhorse that turns an approved plan into working code. Reports to the tech director.
-model: openrouter/z-ai/glm-5.3-flash
+model: openrouter/anthropic/claude-haiku-5.5
 thinking: high
 tools: read, edit, write, bash, grep, find, ls
 skills: webapp-testing, studio-tdd-method, studio-backend-standards, studio-environment, remotion-saas, remotion-render, mediabunny

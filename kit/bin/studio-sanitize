@@ -1,0 +1,381 @@
+#!/usr/bin/env python3
+"""studio-sanitize — codified served-tree comment sanitation (D-66 law).
+
+The served tree of a deployed client site carries ZERO process commentary:
+no section numbers, no client directives, no build dates, no named decisions.
+Documentation lives in git history, .studio/, and docs/ — never in what the
+public downloads.
+
+Two modes:
+
+  studio-sanitize <git-root>
+      Strip comments in place across the project's configured site root.
+      Comment spans are blanked byte-length-preserving (spaces; newlines
+      kept), so code bytes, token positions and line structure are untouched.
+      Every JS strip runs a string-literal-multiset invariant; every parser
+      refuses (exit 2) on ambiguity (unterminated comment/regex/string) —
+      the tool never guesses. Prints a per-file span summary (the audit).
+
+  studio-sanitize --check <dir>
+      Dry-run scan of a directory tree (used by studio-deploy on its exact
+      staged tree). Exit 0 = clean; exit 3 = comment spans found (with a
+      per-file count). Never writes.
+
+Scope: *.html, *.css, *.js, *.svg under the site root. Binary assets, fonts,
+images and other file types are out of scope by construction. qa/ sub-tree
+files are scanned too (harmless: Python harnesses and captures are out of
+scope by extension).
+
+SVG scope note: XML comments (<!-- -->) only; a <style> block inside an SVG
+carrying CSS comments would be missed — the reference site's svgs carry none.
+"""
+import re
+import sys
+import os
+
+SERVED_SUFFIXES = ('.html', '.css', '.js', '.svg')
+
+KEYWORDS = {'return', 'typeof', 'instanceof', 'in', 'of', 'new', 'delete',
+            'void', 'yield', 'await'}
+
+
+def _regex_start(src, i):
+    """Would a '/' at offset i begin a regex literal (not division)?"""
+    j = i - 1
+    while j >= 0 and src[j] in ' \t\r\n':
+        j -= 1
+    if j < 0:
+        return True
+    c = src[j]
+    if c in '([{,;=:!':
+        return True
+    if c in ')]}':
+        return False
+    if c.isalnum() or c in '_$':
+        # a keyword before '/' can start a regex (return /re/, typeof /re/)
+        k = j
+        while k >= 0 and (src[k].isalnum() or src[k] in '_$'):
+            k -= 1
+        word = src[k + 1:j + 1]
+        return word in KEYWORDS
+    return False
+
+
+def _fail_ambiguity(path, what, offset, line):
+    raise SystemExit(
+        f'studio-sanitize: {what} at {path}:{line} (offset {offset}) — '
+        f'refusing to guess; fix the source first'
+    )
+
+
+def scan_js(src, path='<js>'):
+    """Tokenize JS; blank every comment span. Returns (out, spans).
+
+    spans: list of (start, end, kind, line).
+    Strings and regex literals are tracked so comment markers inside them
+    are untouched. Refuses on unterminated constructs.
+    """
+    out = list(src)
+    spans = []
+    i, n = 0, len(src)
+    line = 1
+    while i < n:
+        c = src[i]
+        if c == '\n':
+            line += 1
+            i += 1
+            continue
+        if c == '/' and i + 1 < n and src[i + 1] == '/':
+            j = src.find('\n', i)
+            j = n if j == -1 else j
+            spans.append((i, j, 'line', line))
+            for k in range(i, j):
+                if out[k] != '\r':
+                    out[k] = ' '  # \r survives: CRLF terminators are not comments
+            i = j
+        elif c == '/' and i + 1 < n and src[i + 1] == '*':
+            j = src.find('*/', i + 2)
+            if j == -1:
+                _fail_ambiguity(path, 'unterminated block comment', i, line)
+            j += 2
+            spans.append((i, j, 'block', line))
+            for k in range(i, j):
+                if out[k] not in '\r\n':
+                    out[k] = ' '
+            i = j
+        elif c == '/' and _regex_start(src, i):
+            j = i + 1
+            in_class = False
+            while j < n:
+                ch = src[j]
+                if ch == '\\':
+                    j += 2
+                    continue
+                if ch == '[':
+                    in_class = True
+                elif ch == ']':
+                    in_class = False
+                elif ch == '/' and not in_class:
+                    break
+                j += 1
+            if j >= n:
+                _fail_ambiguity(path, 'unterminated regex literal', i, line)
+            # NOTE: the regex span is deliberately NOT recorded — it is not a
+            # comment (its body may contain // or /* and must never be blanked
+            # or counted). Recording it would false-fail every deploy.
+            i = j + 1
+        elif c in ('"', "'", '`'):
+            q = c
+            start = i
+            i += 1
+            while i < n:
+                if src[i] == '\\':
+                    i += 2
+                    continue
+                if src[i] == q:
+                    i += 1
+                    break
+                i += 1
+            else:
+                _fail_ambiguity(path, 'unterminated string literal', start, line)
+            # note: while-loop above exits via break or i>=n; unterminated
+            # templates fall through to i>=n — caught below
+            if i > n:
+                _fail_ambiguity(path, 'unterminated string literal', start, line)
+        else:
+            i += 1
+    return ''.join(out), spans
+
+
+def extract_strings(src):
+    """All string-literal texts via the same scanner (for the invariant)."""
+    strings = []
+    i, n = 0, len(src)
+    while i < n:
+        c = src[i]
+        if c == '/' and i + 1 < n and src[i + 1] == '/':
+            j = src.find('\n', i)
+            i = n if j == -1 else j
+        elif c == '/' and i + 1 < n and src[i + 1] == '*':
+            j = src.find('*/', i + 2)
+            i = n if j == -1 else j + 2
+        elif c == '/' and _regex_start(src, i):
+            j = i + 1
+            in_class = False
+            while j < n:
+                ch = src[j]
+                if ch == '\\':
+                    j += 2
+                    continue
+                if ch == '[':
+                    in_class = True
+                elif ch == ']':
+                    in_class = False
+                elif ch == '/' and not in_class:
+                    break
+                j += 1
+            i = j + 1
+        elif c in ('"', "'", '`'):
+            q = c
+            start = i
+            i += 1
+            while i < n:
+                if src[i] == '\\':
+                    i += 2
+                    continue
+                if src[i] == q:
+                    i += 1
+                    break
+                i += 1
+            strings.append(src[start:i])
+        else:
+            i += 1
+    return strings
+
+
+def scan_css(src, path='<css>'):
+    """Blank /* */ spans; refuse unterminated."""
+    spans = []
+    pos = 0
+    while True:
+        s = src.find('/*', pos)
+        if s == -1:
+            break
+        e = src.find('*/', s + 2)
+        if e == -1:
+            line = src.count('\n', 0, s) + 1
+            _fail_ambiguity(path, 'unterminated CSS comment', s, line)
+        e += 2
+        spans.append((s, e, 'css', src.count('\n', 0, s) + 1))
+        pos = e
+    buf = list(src)
+    for s, e, _k, _l in spans:
+        for k in range(s, e):
+            if buf[k] not in '\r\n':
+                buf[k] = ' '
+    return ''.join(buf), spans
+
+
+def scan_html(src, path='<html>'):
+    """Blank HTML/XML comment spans; JS-strip every inline <script> block.
+
+    Returns (out, audit) where audit is (line, kind, text) tuples.
+    String invariants are asserted per inline script.
+    """
+    spans = [(m.start(), m.end(), 'html')
+             for m in re.finditer(r'<!--.*?-->', src, re.S)]
+    buf = list(src)
+    for s, e, _k in spans:
+        for k in range(s, e):
+            if buf[k] not in '\r\n':
+                buf[k] = ' '
+    stage1 = ''.join(buf)
+    audit = [(src.count('\n', 0, s) + 1, kind, src[s:e]) for s, e, kind in spans]
+    out = stage1
+    for m in re.finditer(r'<script>(.*?)</script>', stage1, re.S):
+        block = m.group(1)
+        js_out, js_spans = scan_js(block, path)
+        if extract_strings(block) != extract_strings(js_out):
+            raise SystemExit(
+                f'studio-sanitize: string-literal invariant FAILED in inline '
+                f'script at {path} — refusing'
+            )
+        out = out[:m.start(1)] + js_out + out[m.end(1):]
+        audit.extend(
+            (block.count('\n', 0, s) + 1, 'inline-js-' + kind, block[s:e])
+            for s, e, kind, _ in js_spans)
+    return out, audit
+
+
+def scan_svg(src, path='<svg>'):
+    return scan_html(src, path)
+
+
+def iter_served_files(root, excludes=()):
+    """Yield served-scope files under root, honoring exclude patterns.
+
+    A pattern matches when a file's path relative to root equals the pattern
+    or lives under it ('qa/' skips everything under qa/; '.well-known' skips
+    that path tree). This mirrors the runner's rsync --exclude scope:
+    excluded paths are never deployed, so they are outside the sanitation
+    law's scope in BOTH modes (the gate must not count them; strip mode must
+    not mutate them — QA fixtures live there).
+    """
+    norm = []
+    for pattern in excludes:
+        p = pattern.rstrip('/')
+        if p:
+            norm.append(p)
+    for dirpath, dirnames, filenames in os.walk(root):
+        for name in filenames:
+            if not name.endswith(SERVED_SUFFIXES):
+                continue
+            full = os.path.join(dirpath, name)
+            rel = os.path.relpath(full, root)
+            if any(rel == p or rel.startswith(p + '/') for p in norm):
+                continue
+            yield full
+
+
+def strip_kind(suffix, src, path):
+    if suffix == '.js':
+        out, spans = scan_js(src, path)
+        if extract_strings(src) != extract_strings(out):
+            raise SystemExit(
+                f'studio-sanitize: string-literal invariant FAILED for {path} '
+                f'— refusing')
+        return out, [(line, kind, src[s:e]) for s, e, kind, line in spans]
+    if suffix == '.css':
+        out, spans = scan_css(src, path)
+        return out, [(line, kind, src[s:e]) for s, e, kind, line in spans]
+    if suffix == '.svg':
+        return scan_svg(src, path)
+    return scan_html(src, path)
+
+
+def _usage():
+    print('usage: studio-sanitize [--check] <dir> [--exclude PATTERN]...')
+    print('       studio-sanitize <git-root>   (strip in place; scope from .studio/deploy.json)')
+    raise SystemExit(2)
+
+
+def _parse_args(argv):
+    check_mode = False
+    if argv and argv[0] == '--check':
+        check_mode = True
+        argv = argv[1:]
+    positional = []
+    excludes = []
+    i = 0
+    while i < len(argv):
+        if argv[i] == '--exclude':
+            if i + 1 >= len(argv):
+                _usage()
+            excludes.append(argv[i + 1])
+            i += 2
+        elif argv[i].startswith('--'):
+            _usage()
+        else:
+            positional.append(argv[i])
+            i += 1
+    if len(positional) != 1:
+        _usage()
+    return check_mode, positional[0], excludes
+
+
+def main():
+    check_mode, root, excludes = _parse_args(sys.argv[1:])
+
+    if check_mode:
+        total = 0
+        per_file = {}
+        for path in sorted(iter_served_files(root, excludes)):
+            suffix = os.path.splitext(path)[1]
+            src = open(path, encoding='utf-8', newline='').read()
+            if suffix == '.js':
+                spans = scan_js(src, path)[1]
+            elif suffix == '.css':
+                spans = scan_css(src, path)[1]
+            elif suffix == '.svg':
+                spans = scan_svg(src, path)[1]
+            else:
+                spans = scan_html(src, path)[1]
+            count = len(spans)
+            if count:
+                per_file[os.path.relpath(path, root)] = count
+                total += count
+        if total:
+            for rel, count in sorted(per_file.items()):
+                print(f'  {rel}: {count} comment span(s)')
+            print(f'CHECK: {total} comment span(s) remain — NOT deployable')
+            raise SystemExit(3)
+        print('CHECK: clean — zero comment spans in the served scope')
+        return
+
+    # strip mode: target is a git root; scope comes from its deploy.json
+    git_root = os.path.abspath(root)
+    config = os.path.join(git_root, '.studio', 'deploy.json')
+    if not os.path.isfile(config):
+        raise SystemExit(f'studio-sanitize: missing {config}')
+    import json
+    cfg = json.load(open(config, encoding='utf-8'))
+    site_root = cfg['site-root'].rstrip('/')
+    root_dir = os.path.join(git_root, site_root)
+    if not os.path.isdir(root_dir):
+        raise SystemExit(f'studio-sanitize: site root not found: {root_dir}')
+    excludes = cfg.get('excludes', [])
+
+    total = 0
+    for path in sorted(iter_served_files(root_dir, excludes)):
+        suffix = os.path.splitext(path)[1]
+        src = open(path, encoding='utf-8', newline='').read()
+        out, spans = strip_kind(suffix, src, path)
+        if out != src:
+            open(path, 'w', encoding='utf-8', newline='').write(out)
+            total += len(spans)
+            print(f'{os.path.relpath(path, git_root)}: {len(spans)} span(s) blanked')
+    print(f'studio-sanitize: {total} comment span(s) blanked — commit the result')
+
+
+if __name__ == '__main__':
+    main()

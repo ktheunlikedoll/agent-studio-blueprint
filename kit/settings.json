@@ -21,7 +21,7 @@
       },
       "reviewer": {
         "disabled": false,
-        "model": "openrouter/openai/gpt-5.6-luna",
+        "model": "openrouter/anthropic/claude-haiku-5.5",
         "thinking": "high"
       },
       "worker": {
@@ -35,7 +35,7 @@
       },
       "oracle": {
         "disabled": false,
-        "model": "openrouter/openai/gpt-6.1-sol",
+        "model": "anthropic/claude-haiku-5.5",
         "thinking": "high",
         "skills": [
           "studio-grill",

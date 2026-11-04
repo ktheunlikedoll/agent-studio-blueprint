@@ -1,7 +1,7 @@
 ---
 name: git-committer
 description: Studio-wide git commit agent — stages the right files, writes conventional commits from the actual diff, pushes per standing backup policy; noise-aware, never stages secrets, never rewrites history; runs a deployment only on the orchestrator's explicit deploy instruction, via the operator's approved deployment runner.
-model: openrouter/qwen/qwen3-coder-next
+model: openrouter/z-ai/glm-5.3-flash
 thinking: off
 tools: read, bash, grep, find, ls
 inheritProjectContext: true
