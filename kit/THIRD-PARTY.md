@@ -23,6 +23,10 @@ The starter kit bundles engine-authored orchestration files and skills. The item
 - `bin/studio-deploy` is a business-specific deployment runner and is not included. Use your own approved deployment mechanism.
 - Generic engine-authored ops tools ARE included: `bin/github-comment.py` (GitHub issue/PR engagement helper), `bin/site-maintenance.py` (deterministic, report-only site monitor — runtime state and site registry are yours to create), and `bin/studio-sanitize` (served-tree comment stripper used by the sanitation law in APPEND_SYSTEM.md policy #3).
 
+## Memory module — included code, excluded runtime state
+
+The librarian memory system ships as code only (`memory/*.py|js`, `memory/test_write_exclusivity.sh`, `extensions/memory-router.ts`, `bin/memory-librarian-cron.sh`, `agents/memory-librarian.md`). Deliberately excluded personal/runtime state: `memory/memory.db*` (your record store), `memory/.env` (provider keys for consolidation), `memory/consolidation.{log,lock}`, `memory/model-outputs/` (run journals), `memory/goldset/` (internal evaluation data), `memory/seed/` (personal seed data), and `memory/__pycache__/`. All are created or supplied on the target machine.
+
 Verify upstream licenses before redistributing any excluded component or adding it to a derivative kit.
 
 The media-use skill's sample audio binaries are omitted from this text-first kit; provide your own licensed media assets when using that skill.

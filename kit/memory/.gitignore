@@ -1,0 +1,6 @@
+# Derived/private runtime state; never commit personal ledger or lock/log material.
+memory.db*
+consolidation.log
+consolidation.lock
+.env
+__pycache__/

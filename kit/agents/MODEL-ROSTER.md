@@ -14,6 +14,7 @@ policy intent only — this file is the only per-agent model mapping doc.
 | Agent | Dept | Model | Thinking |
 |---|---|---|---|
 | `git-committer` | engine | `openrouter/z-ai/glm-5.3-flash` | off |
+| `memory-librarian` | engine | `openrouter/z-ai/glm-5.3-flash` | medium |
 | `minion` | engine | `openrouter/z-ai/glm-5.3-flash` | high |
 | `planner` | engine | `openrouter/anthropic/claude-haiku-5.5` | high |
 | `reviser` | engine | `openrouter/anthropic/claude-haiku-5.5` | high |

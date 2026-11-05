@@ -18,6 +18,7 @@ The kit is intentionally sanitized. It contains no personal credentials, machine
 - **Node.js and npm.** Node is needed for Pi and the kit's JavaScript utilities. Confirm with `node --version` and `npm --version`.
 - **API keys.** Bring your own keys for the providers represented in `auth.example.json`: Z.ai, MiniMax, OpenRouter, and Tavily. You may configure only the providers you use, but the active default provider must have a key.
 - **Optional tools.** MCP servers and ArtCraft applications are optional. Install only the adapters and desktop/headless tools your workflow actually needs.
+- **Memory module (included, disarmed).** The librarian memory system (`memory/` + `extensions/memory-router.ts`) ships disabled-safe: retrieval tools work once `memory/db.py` has created the store on first use, but consolidation never runs on a schedule until you arm it. See `bin/memory-librarian-cron.sh` for the manual entrypoint and re-arm conditions. Runtime state (`memory.db`, `.env`, logs) is created on your machine and is never bundled.
 
 ## Install
 
